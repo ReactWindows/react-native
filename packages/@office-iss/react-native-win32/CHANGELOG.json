@@ -2,6 +2,115 @@
   "name": "@office-iss/react-native-win32",
   "entries": [
     {
+      "date": "Thu, 08 Jul 2021 05:05:44 GMT",
+      "tag": "@office-iss/react-native-win32_v0.0.0-canary.100",
+      "version": "0.0.0-canary.100",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Support running UIManager as a TurboModule",
+            "author": "30809111+acoates-ms@users.noreply.github.com",
+            "commit": "65320550fab613a2e65a3f29b00a40ca597ec89d",
+            "package": "@office-iss/react-native-win32"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 07 Jul 2021 05:06:28 GMT",
+      "tag": "@office-iss/react-native-win32_v0.0.0-canary.99",
+      "version": "0.0.0-canary.99",
+      "comments": {
+        "none": [
+          {
+            "comment": "Add new VirtualizedList Tests from RN Core PR",
+            "author": "ngerlem@microsoft.com",
+            "commit": "ec31e5ce8ef24e189c1fce3645da3273223e3850",
+            "package": "@office-iss/react-native-win32"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 02 Jul 2021 05:06:31 GMT",
+      "tag": "@office-iss/react-native-win32_v0.0.0-canary.99",
+      "version": "0.0.0-canary.99",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Fork VirtualizedList to its own package",
+            "author": "ngerlem@microsoft.com",
+            "commit": "81c98a6f0da42ec1287311b997fe323da5a1b284",
+            "package": "@office-iss/react-native-win32"
+          }
+        ],
+        "patch": [
+          {
+            "comment": "Bump @rnw-scripts/jest-out-of-tree-resolver to v1.0.2",
+            "author": "ngerlem@microsoft.com",
+            "commit": "81c98a6f0da42ec1287311b997fe323da5a1b284",
+            "package": "@office-iss/react-native-win32"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 30 Jun 2021 05:07:31 GMT",
+      "tag": "@office-iss/react-native-win32_v0.0.0-canary.98",
+      "version": "0.0.0-canary.98",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Adding AccessibilityControls to ViewWin32 config",
+            "author": "safreibe@microsoft.com",
+            "commit": "60d5f40117a613fcb8f83044bdf5bbbf00287616",
+            "package": "@office-iss/react-native-win32"
+          },
+          {
+            "comment": "Bump rex-win32 to latest",
+            "author": "ngerlem@microsoft.com",
+            "commit": "ceb6d9a45d9b88b17b2b90f33d452d159d6738e4",
+            "package": "@office-iss/react-native-win32"
+          },
+          {
+            "comment": "Enable List UTs in react-native-win32",
+            "author": "ngerlem@microsoft.com",
+            "commit": "21c441263b3ddc3acf57916a611d6a04e6f9d75c",
+            "package": "@office-iss/react-native-win32"
+          }
+        ],
+        "patch": [
+          {
+            "comment": "Bump @rnw-scripts/jest-out-of-tree-resolver to v1.0.1",
+            "author": "ngerlem@microsoft.com",
+            "commit": "21c441263b3ddc3acf57916a611d6a04e6f9d75c",
+            "package": "@office-iss/react-native-win32"
+          },
+          {
+            "comment": "Bump @rnw-scripts/jest-out-of-tree-snapshot-resolver to v1.0.1",
+            "author": "ngerlem@microsoft.com",
+            "commit": "21c441263b3ddc3acf57916a611d6a04e6f9d75c",
+            "package": "@office-iss/react-native-win32"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 29 Jun 2021 05:06:48 GMT",
+      "tag": "@office-iss/react-native-win32_v0.0.0-canary.97",
+      "version": "0.0.0-canary.97",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Allow native module to set JS-side QuirkSettings",
+            "author": "ngerlem@microsoft.com",
+            "commit": "e7e24109a18444696f51c163ec6ac86413299a18",
+            "package": "@office-iss/react-native-win32"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 17 Jun 2021 05:07:57 GMT",
       "tag": "@office-iss/react-native-win32_v0.0.0-canary.96",
       "version": "0.0.0-canary.96",

@@ -395,9 +395,11 @@ type WindowsViewProps = $ReadOnly<{|
    * @platform windows
    */
   onKeyUp?: ?(e: KeyEvent) => void,
+  onKeyUpCapture?: ?(e: KeyEvent) => void,
   keyUpEvents?: ?$ReadOnlyArray<HandledKeyboardEvent>,
 
   onKeyDown?: ?(e: KeyEvent) => void,
+  onKeyDownCapture?: ?(e: KeyEvent) => void,
   keyDownEvents?: ?$ReadOnlyArray<HandledKeyboardEvent>,
   /**
    * Specifies the Tooltip for the view

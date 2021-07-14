@@ -45,7 +45,6 @@ comp::Compositor GetCompositor() {
   if (!IsXamlIsland()) {
     return xaml::Window::Current().Compositor();
   }
-  comp::Compositor compositor;
 #ifndef USE_WINUI3
   assert(tlsCompositor != nullptr);
   return tlsCompositor;

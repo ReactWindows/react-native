@@ -12,6 +12,12 @@ const rnwTesterPath = fs.realpathSync(
     require.resolve('@office-iss/react-native-win32-tester/package.json'),
   ),
 );
+const virtualizedListPath = fs.realpathSync(
+  path.resolve(
+    require.resolve('@react-native-windows/virtualized-list/package.json'),
+    '..',
+  ),
+);
 
 module.exports = {
   // WatchFolders is only needed due to the yarn workspace layout of node_modules, we need to watch the symlinked locations separately
@@ -20,12 +26,15 @@ module.exports = {
     path.resolve(__dirname, '../../../node_modules'),
     rnwTesterPath,
     rnWin32Path,
+    // Add virtualized-list dependency, whose unsymlinked representation is not in node_modules, only in our repo
+    virtualizedListPath,
   ],
 
   resolver: {
     extraNodeModules: {
       '@office-iss/react-native-win32': rnWin32Path,
       'react-native-win32-tester': rnwTesterPath,
+      '@react-native-windows/virtualized-list': virtualizedListPath,
     },
   },
 

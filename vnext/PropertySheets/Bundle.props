@@ -69,7 +69,7 @@
     <HermesSourceMap Condition="'$(HermesSourceMap)' == '' AND '$(UseHermes)' == 'true'">$(BaseBundleSourceMap).compiler.map</HermesSourceMap>
 
     <!-- Command to compile Hermes bytecode -->
-    <HermesCompilerCommand Condition="'$(HermesCompilerCommand)' == ''">$(HermesPackage)\tools\release\x86\hermes.exe</HermesCompilerCommand>
+    <HermesCompilerCommand Condition="'$(HermesCompilerCommand)' == ''">$(HermesPackage)\tools\native\release\x86\hermes.exe</HermesCompilerCommand>
 
     <!-- Flags passed to Hermes when compiling a bundle -->
     <HermesCompilerFlags Condition="'$(HermesCompilerFlags)' == '' AND '$(Configuration)' != 'Debug'">-O</HermesCompilerFlags>

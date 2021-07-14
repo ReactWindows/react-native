@@ -13,7 +13,6 @@ namespace Mso::React {
 
 class ReactInstanceWin;
 
-#ifndef CORE_ABI
 class ReactSettingsSnapshot final : public Mso::UnknownObject<IReactSettingsSnapshot> {
  public:
   ReactSettingsSnapshot(Mso::WeakPtr<ReactInstanceWin> &&reactInstance) noexcept;
@@ -34,7 +33,6 @@ class ReactSettingsSnapshot final : public Mso::UnknownObject<IReactSettingsSnap
  private:
   Mso::WeakPtr<ReactInstanceWin> m_reactInstance;
 };
-#endif
 
 class ReactContext final : public Mso::UnknownObject<IReactContext> {
  public:
@@ -54,18 +52,14 @@ class ReactContext final : public Mso::UnknownObject<IReactContext> {
   void CallJSFunction(std::string &&module, std::string &&method, folly::dynamic &&params) const noexcept override;
   void DispatchEvent(int64_t viewTag, std::string &&eventName, folly::dynamic &&eventData) const noexcept override;
   winrt::Microsoft::ReactNative::JsiRuntime JsiRuntime() const noexcept override;
-#ifndef CORE_ABI
   ReactInstanceState State() const noexcept override;
   bool IsLoaded() const noexcept override;
   std::shared_ptr<facebook::react::Instance> GetInnerInstance() const noexcept override;
   IReactSettingsSnapshot const &SettingsSnapshot() const noexcept override;
-#endif
 
  private:
   Mso::WeakPtr<ReactInstanceWin> m_reactInstance;
-#ifndef CORE_ABI
   Mso::CntPtr<ReactSettingsSnapshot> m_settings;
-#endif
   winrt::Microsoft::ReactNative::IReactPropertyBag m_properties;
   winrt::Microsoft::ReactNative::IReactNotificationService m_notifications;
 };

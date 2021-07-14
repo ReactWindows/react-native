@@ -226,11 +226,10 @@ export async function copyProjectTemplateAndReplace(
       id: 'Microsoft.NETCore.UniversalWindowsPlatform',
       version: '6.2.9',
     },
-    /* #7225 ReactNative.Hermes.Windows is not yet seen as compatible for usage in C# projects
     {
       id: 'ReactNative.Hermes.Windows',
       version: hermesVersion,
-    }, */
+    },
   ];
 
   const cppNugetPackages: CppNugetPackage[] = [

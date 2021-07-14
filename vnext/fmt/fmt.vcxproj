@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="Globals">
     <ProjectGuid>{14b93dc8-fd93-4a6d-81cb-8bc96644501c}</ProjectGuid>
     <Keyword>StaticLibrary</Keyword>
@@ -111,10 +111,10 @@
     <Message Importance="High" Text="Generating $([MSBuild]::NormalizePath($(FmtDir)..))\cgmanifest.json." Condition="!Exists('$([MSBuild]::NormalizePath($(FmtDir)..))\cgmanifest.json')" />
     <PropertyGroup>
       <CGManifestText>{
-    "Registrations": [ 
+    "Registrations": [
         {
-            "Component": { 
-                "Type": "other", 
+            "Component": {
+                "Type": "other",
                 "Other": {
                   "Name": "fmt",
                   "Version": "$(FmtVersion)",

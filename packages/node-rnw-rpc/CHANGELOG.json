@@ -2,6 +2,141 @@
   "name": "node-rnw-rpc",
   "entries": [
     {
+      "date": "Wed, 14 Jul 2021 06:00:50 GMT",
+      "tag": "node-rnw-rpc_v1.0.11-19",
+      "version": "1.0.11-19",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Set ToolsVersion to Current",
+            "author": "julio.rocha@microsoft.com",
+            "commit": "5bb8b1d591e54a03efd10343200f4aba5a2a2441",
+            "package": "node-rnw-rpc"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 13 Jul 2021 05:06:16 GMT",
+      "tag": "node-rnw-rpc_v1.0.11-18",
+      "version": "1.0.11-18",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Bump react-native-windows to v0.0.0-canary.341",
+            "author": "erozell@outlook.com",
+            "commit": "2568bd7494ade77ce3195d47b56132e8d1d661b6",
+            "package": "node-rnw-rpc"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 12 Jul 2021 05:05:31 GMT",
+      "tag": "node-rnw-rpc_v1.0.11-17",
+      "version": "1.0.11-17",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Bump react-native-windows to v0.0.0-canary.340",
+            "author": "asklar@microsoft.com",
+            "commit": "f611124785552ba649b75fdc25740c614c7e953f",
+            "package": "node-rnw-rpc"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 09 Jul 2021 05:06:27 GMT",
+      "tag": "node-rnw-rpc_v1.0.11-16",
+      "version": "1.0.11-16",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Bump react-native-windows to v0.0.0-canary.339",
+            "author": "igklemen@microsoft.com",
+            "commit": "bc60ec2e253ae24960424399402bdccb16c591e5",
+            "package": "node-rnw-rpc"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Jul 2021 05:05:44 GMT",
+      "tag": "node-rnw-rpc_v1.0.11-15",
+      "version": "1.0.11-15",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Bump react-native-windows to v0.0.0-canary.338",
+            "author": "30809111+acoates-ms@users.noreply.github.com",
+            "commit": "65320550fab613a2e65a3f29b00a40ca597ec89d",
+            "package": "node-rnw-rpc"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 07 Jul 2021 05:06:28 GMT",
+      "tag": "node-rnw-rpc_v1.0.11-14",
+      "version": "1.0.11-14",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Bump react-native-windows to v0.0.0-canary.337",
+            "author": "34109996+chiaramooney@users.noreply.github.com",
+            "commit": "de57f7410efa57570db71f16cb6e5b7911ee3425",
+            "package": "node-rnw-rpc"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 02 Jul 2021 05:06:31 GMT",
+      "tag": "node-rnw-rpc_v1.0.11-13",
+      "version": "1.0.11-13",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Bump react-native-windows to v0.0.0-canary.336",
+            "author": "erozell@outlook.com",
+            "commit": "3b7131b3e7e93b466700874addcc6e0172fab388",
+            "package": "node-rnw-rpc"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 30 Jun 2021 05:07:31 GMT",
+      "tag": "node-rnw-rpc_v1.0.11-12",
+      "version": "1.0.11-12",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Bump react-native-windows to v0.0.0-canary.335",
+            "author": "ngerlem@microsoft.com",
+            "commit": "21c441263b3ddc3acf57916a611d6a04e6f9d75c",
+            "package": "node-rnw-rpc"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 29 Jun 2021 05:06:48 GMT",
+      "tag": "node-rnw-rpc_v1.0.11-11",
+      "version": "1.0.11-11",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Bump react-native-windows to v0.0.0-canary.334",
+            "author": "ngerlem@microsoft.com",
+            "commit": "2646cb69f4e031799d04ecd5453aa9d44b48b261",
+            "package": "node-rnw-rpc"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 27 Jun 2021 05:08:11 GMT",
       "tag": "node-rnw-rpc_v1.0.11-10",
       "version": "1.0.11-10",

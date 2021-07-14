@@ -573,12 +573,14 @@ std::shared_ptr<IRedBoxHandler> CreateRedBoxHandler(
   return std::make_shared<RedBoxHandler>(redBoxHandler);
 }
 
-#ifndef CORE_ABI
 std::shared_ptr<IRedBoxHandler> CreateDefaultRedBoxHandler(
     Mso::WeakPtr<IReactHost> &&weakReactHost,
     Mso::DispatchQueue &&uiQueue) noexcept {
+#ifndef CORE_ABI
   return std::make_shared<DefaultRedBoxHandler>(std::move(weakReactHost), std::move(uiQueue));
-}
+#else
+  return nullptr;
 #endif
+}
 
 } // namespace Mso::React

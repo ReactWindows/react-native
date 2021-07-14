@@ -113,12 +113,10 @@ struct IReactContext : IUnknown {
   virtual void CallJSFunction(std::string &&module, std::string &&method, folly::dynamic &&params) const noexcept = 0;
   virtual void DispatchEvent(int64_t viewTag, std::string &&eventName, folly::dynamic &&eventData) const noexcept = 0;
   virtual winrt::Microsoft::ReactNative::JsiRuntime JsiRuntime() const noexcept = 0;
-#ifndef CORE_ABI
   virtual ReactInstanceState State() const noexcept = 0;
   virtual bool IsLoaded() const noexcept = 0;
   virtual std::shared_ptr<facebook::react::Instance> GetInnerInstance() const noexcept = 0;
   virtual IReactSettingsSnapshot const &SettingsSnapshot() const noexcept = 0;
-#endif
 };
 
 //! Settings per each IReactViewHost associated with an IReactHost instance.

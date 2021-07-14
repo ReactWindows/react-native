@@ -1,6 +1,6 @@
 {
   "name": "@office-iss/react-native-win32",
-  "version": "0.0.0-canary.96",
+  "version": "0.0.0-canary.100",
   "description": "Implementation of react native on top of Office's Win32 platform.",
   "license": "MIT",
   "main": "./index.win32.js",
@@ -12,15 +12,17 @@
     "flow-check": "flow check",
     "lint:fix": "rnw-scripts lint:fix",
     "lint": "rnw-scripts lint",
-    "run-win32-dev-web": "npx @office-iss/rex-win32@0.63.27-devmain.14108.10000 --bundle js/RNTesterApp --component RNTesterApp --basePath ./dist/win32/dev --jsEngine v8 --useDevMain --useWebDebugger",
-    "run-win32-devmain": "npx @office-iss/rex-win32@0.63.27-devmain.14108.10000 --bundle js/RNTesterApp --component RNTesterApp --basePath ./dist/win32/dev --jsEngine v8 --useDevMain",
-    "run-win32": "npx @office-iss/rex-win32@0.63.27-devmain.14108.10000 --bundle js/RNTesterApp --component RNTesterApp --basePath ./dist/win32/dev --jsEngine v8",
+    "run-win32-dev-web": "npx @office-iss/rex-win32@0.63.33-devmain.14226.10000 --bundle js/RNTesterApp --component RNTesterApp --basePath ./dist/win32/dev --jsEngine v8 --useDevMain --useWebDebugger",
+    "run-win32-devmain": "npx @office-iss/rex-win32@0.63.33-devmain.14226.10000 --bundle js/RNTesterApp --component RNTesterApp --basePath ./dist/win32/dev --jsEngine v8 --useDevMain",
+    "run-win32": "npx @office-iss/rex-win32@0.63.33-devmain.14226.10000 --bundle js/RNTesterApp --component RNTesterApp --basePath ./dist/win32/dev --jsEngine v8",
     "start": "react-native start --projectRoot ../react-native-win32-tester",
+    "test": "jest",
     "validate-overrides": "react-native-platform-override validate"
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
     "@jest/create-cache-key-function": "^27.0.1",
+    "@react-native-windows/virtualized-list": "0.0.0-canary.1",
     "@react-native-community/cli": "^6.0.0-rc.0",
     "@react-native-community/cli-platform-android": "^6.0.0-rc.0",
     "@react-native-community/cli-platform-ios": "^6.0.0-rc.0",
@@ -55,6 +57,8 @@
   },
   "devDependencies": {
     "@rnw-scripts/eslint-config": "1.1.7",
+    "@rnw-scripts/jest-out-of-tree-resolver": "^1.0.2",
+    "@rnw-scripts/jest-out-of-tree-snapshot-resolver": "^1.0.1",
     "@types/node": "^14.14.22",
     "@types/prop-types": "15.7.1",
     "@types/react": "16.9.11",

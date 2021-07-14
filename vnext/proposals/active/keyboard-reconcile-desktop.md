@@ -15,9 +15,9 @@ Property that determines whether this View, Touchable should be focusable with a
 | boolean | No | Windows, macOS | false |
 
 React Native core introduced `focusable` that does the same thing as acceptsKeyboardFocus in v0.62. In order to align and make this complete, the work here includes the following:
-- **COMPLETED** : Windows has added `focusable` and marked `acceptsKeyboardFocus` as deprecated in 0.62. 
+- **COMPLETED** : Windows has added `focusable` and marked `acceptsKeyboardFocus` as deprecated in 0.62.
 - macOS needs to do add `focusable` and mark `acceptsKeyboardFocus` as deprecated. Tracked by - [Issue#498](https://github.com/microsoft/react-native-macos/issues/498)
-- **COMPLETED** : Add focusable to Pressable ([windows Issue#5512](https://github.com/microsoft/react-native-windows/issues/5512), [macOS Issue#500](https://github.com/microsoft/react-native-macos/issues/500)). 
+- **COMPLETED** : Add focusable to Pressable ([windows Issue#5512](https://github.com/microsoft/react-native-windows/issues/5512), [macOS Issue#500](https://github.com/microsoft/react-native-macos/issues/500)).
 - `focusable` is already supported in Android and exists in core. There is no hard upstreaming requirement, however – it would be good to implement this for iOS/iPadOS for completion.
 
 ## focus, blur, onFocus, onBlur on View
@@ -44,7 +44,7 @@ macOS has implemented an `onScrollKeyDown` callback in ScrollView to scroll the 
 
 ## onKeyXX callbacks
 
-The following callbacks are available on View component (and get passed through to TextInput and Pressable) in Windows to cover the most common use cases where key stroke handling is likely to occur. Other individual components where they may be neeeded can wrap a View around themselves. 
+The following callbacks are available on View component (and get passed through to TextInput and Pressable) in Windows to cover the most common use cases where key stroke handling is likely to occur. Other individual components where they may be neeeded can wrap a View around themselves.
 > Note: The `onKeyDown` event fires repeatedly when a key is held down continuously which is also similar to how native Windows implements KeyDown.
 
 All the below need to be implemented for macOS. Tracked by [Issue#520](https://github.com/microsoft/react-native-macos/issues/520)
@@ -68,6 +68,7 @@ Where `IKeyboardEvent` is a new event type added to `ReactNative.NativeSynthetic
 | shiftKey | boolean | The Shift key. | false |
 | metaKey | boolean | Maps to Windows Logo key and the Apple Command key. | False |
 | repeat | boolean | Flag to represent if a key is being held down/repeated. Tracked by [Windows Issue#5513](https://github.com/microsoft/react-native-windows/issues/5513), [macOS Issue#502](https://github.com/microsoft/react-native-macos/issues/502) | False |
+| timestamp | number | The time, relative to the system boot time, in milliseconds. | undefined |
 | ~~eventPhase~~ | ~~EventPhase~~ | ~~Current phase of routing for the key event.~~ | ~~Bubbling~~ |
 
 ~~Where EventPhase is an enum to detect whether the keystroke is being tunneled/bubbled to the target component that has focus. It has the following fields:~~
@@ -80,7 +81,7 @@ Where `IKeyboardEvent` is a new event type added to `ReactNative.NativeSynthetic
 In the following example, the lastKeyDown prop will contain the key stroke from the end user when keyboard focus is on View.
 ```
   <View onKeyDown={this._onKeyDown} />
-      
+
   private _onKeyDown = (event: IKeyboardEvent) => {
     this.setState({ lastKeyDown: event.nativeEvent.key });
   };
@@ -106,15 +107,15 @@ When the `onKeyXX` events are handled by the app code, the corresponding native 
 In the following example, the app's logic takes precedence when certain keystrokes are encountered at certain event routing phases in the TextInput before the native platform can handle them.
 ```
   <TextInput onKeyUp={this._onKeyUp} keyUpEvents={handledNativeKeyboardEvents} />
-  
+
   const handledNativeKeyboardEvents: IHandledKeyboardEvent[] = [
      { key: 'Enter', eventPhase : EventPhase.Bubbling },
   ];
-  
+
   private _onKeyUp = (event: IKeyboardEvent) => {
     if(event.nativeEvent.key == 'Enter'){
             //do something custom when Enter key is detected when focus is on the TextInput component AFTER the native TextBox has had a chance to handle it (eventPhase = Bubbling)
-    }    
+    }
   };
 ```
 **Behavior details:**
@@ -127,22 +128,22 @@ In the following example, the app's logic takes precedence when certain keystrok
 - It is possible to declare different keystrokes for different event phases on the same component. For example, the following is allowed:
 ```
   <TextInput onKeyUp={this._onKeyUp} keyUpEvents={handledNativeKeyboardEvents} />
-  
+
   const handledNativeKeyboardEvents: IHandledKeyboardEvent[] = [
      { key: 'Esc' },
      { key: 'Enter', ctrlKey : true, eventPhase : EventPhase.Capturing }
   ];
-  
+
   private _onKeyUp = (event: IKeyboardEvent) => {
     if(event.nativeEvent.key == 'Esc'){
-       //do something custom when Escape key is detected when focus is on the TextInput component AFTER 
+       //do something custom when Escape key is detected when focus is on the TextInput component AFTER
        //the native TextBox has had a chance to handle it (default eventPhase = Bubbling)
-    } else if (event.nativeEvent.key == 'Enter' && 
-               event.nativeEvent.eventPhase == EventPhase.Capturing && 
+    } else if (event.nativeEvent.key == 'Enter' &&
+               event.nativeEvent.eventPhase == EventPhase.Capturing &&
                event.nativeEvent.ctrlKey == true)
     {
        //do something custom when user presses Ctrl + Enter when focus is on the TextInput component BEFORE
        //the native TextBox has had a chance to handle it.
-    }      
-  }; 
+    }
+  };
 ```

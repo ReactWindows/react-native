@@ -1,0 +1,20 @@
+{
+  "name": "@react-native-windows/virtualized-list",
+  "entries": [
+    {
+      "date": "Fri, 02 Jul 2021 05:06:31 GMT",
+      "tag": "@react-native-windows/virtualized-list_v0.0.0-canary.1",
+      "version": "0.0.0-canary.1",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Fork VirtualizedList to its own package",
+            "author": "ngerlem@microsoft.com",
+            "commit": "81c98a6f0da42ec1287311b997fe323da5a1b284",
+            "package": "@react-native-windows/virtualized-list"
+          }
+        ]
+      }
+    }
+  ]
+}

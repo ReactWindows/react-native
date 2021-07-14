@@ -1,8 +1,80 @@
 # Change Log - playground
 
-This log was last generated on Sun, 27 Jun 2021 05:08:11 GMT and should not be manually modified.
+This log was last generated on Wed, 14 Jul 2021 06:00:50 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.54
+
+Wed, 14 Jul 2021 06:00:50 GMT
+
+### Changes
+
+- Bump react-native-windows to v0.0.0-canary.342 (julio.rocha@microsoft.com)
+
+## 0.0.54
+
+Tue, 13 Jul 2021 05:06:16 GMT
+
+### Changes
+
+- Bump react-native-windows to v0.0.0-canary.341 (erozell@outlook.com)
+
+## 0.0.54
+
+Mon, 12 Jul 2021 05:05:31 GMT
+
+### Changes
+
+- Bump react-native-windows to v0.0.0-canary.340 (asklar@microsoft.com)
+
+## 0.0.54
+
+Fri, 09 Jul 2021 05:06:27 GMT
+
+### Changes
+
+- Bump react-native-windows to v0.0.0-canary.339 (igklemen@microsoft.com)
+
+## 0.0.54
+
+Thu, 08 Jul 2021 05:05:44 GMT
+
+### Changes
+
+- Bump react-native-windows to v0.0.0-canary.338 (30809111+acoates-ms@users.noreply.github.com)
+
+## 0.0.54
+
+Wed, 07 Jul 2021 05:06:28 GMT
+
+### Changes
+
+- Bump react-native-windows to v0.0.0-canary.337 (34109996+chiaramooney@users.noreply.github.com)
+
+## 0.0.54
+
+Fri, 02 Jul 2021 05:06:31 GMT
+
+### Changes
+
+- Bump react-native-windows to v0.0.0-canary.336 (erozell@outlook.com)
+
+## 0.0.54
+
+Wed, 30 Jun 2021 05:07:31 GMT
+
+### Changes
+
+- Bump react-native-windows to v0.0.0-canary.335 (ngerlem@microsoft.com)
+
+## 0.0.54
+
+Tue, 29 Jun 2021 05:06:48 GMT
+
+### Changes
+
+- Bump react-native-windows to v0.0.0-canary.334 (ngerlem@microsoft.com)
 
 ## 0.0.54
 

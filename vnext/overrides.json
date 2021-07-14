@@ -378,7 +378,7 @@
       "baseHash": "f23a66cfc475ee1e2eda1065e56e05e547b7030e"
     },
     {
-      "type": "copy",
+      "type": "derived",
       "file": "src/Libraries/Lists/__tests__/VirtualizedList-test.js",
       "baseFile": "Libraries/Lists/__tests__/VirtualizedList-test.js",
       "baseHash": "fd25fc611f8da21b93e7f8750d8f2fc8273a4a52"
@@ -394,6 +394,10 @@
       "file": "src/Libraries/Lists/__tests__/VirtualizeUtils-test.js",
       "baseFile": "Libraries/Lists/__tests__/VirtualizeUtils-test.js",
       "baseHash": "b0ff4ee36692d119b7bd7a50a770813e8b96153c"
+    },
+    {
+      "type": "platform",
+      "file": "src/Libraries/Lists/VirtualizedList.windows.js"
     },
     {
       "type": "platform",

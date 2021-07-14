@@ -9,7 +9,7 @@
 'use strict';
 
 import * as React from 'react';
-import {findNodeHandle, NativeModules} from 'react-native';
+import {findNodeHandle, UIManager} from 'react-native';
 
 /*
  ** This is a helper class intended to allow usage of Polite/Aggressive Focus for win32.
@@ -21,17 +21,15 @@ class FocusManager {
   static focus(ref: React.Ref<any>, setWindowFocus: boolean) {
     if (ref) {
       if (setWindowFocus) {
-        NativeModules.UIManager.dispatchViewManagerCommand(
+        UIManager.dispatchViewManagerCommand(
           findNodeHandle(ref),
-          NativeModules.UIManager.getViewManagerConfig('RCTView').Commands
-            .aggressivefocus,
+          UIManager.getViewManagerConfig('RCTView').Commands.aggressivefocus,
           null,
         );
       } else {
-        NativeModules.UIManager.dispatchViewManagerCommand(
+        UIManager.dispatchViewManagerCommand(
           findNodeHandle(ref),
-          NativeModules.UIManager.getViewManagerConfig('RCTView').Commands
-            .politefocus,
+          UIManager.getViewManagerConfig('RCTView').Commands.politefocus,
           null,
         );
       }

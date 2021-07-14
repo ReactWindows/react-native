@@ -1,0 +1,44 @@
+{
+  "name": "@react-native-windows/virtualized-list",
+  "version": "0.0.0-canary.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:microsoft/react-native-windows.git",
+    "directory": "packages/@react-native-windows/virtualizedlist"
+  },
+  "description": "React Native for Windows fork of VirtualizedList",
+  "main": "./src/VirtualizedList.js",
+  "scripts": {
+    "flow-check": "flow check",
+    "lint:fix": "rnw-scripts lint:fix",
+    "lint": "rnw-scripts lint"
+  },
+  "dependencies": {
+    "invariant": "^2.2.4"
+  },
+  "devDependencies": {
+    "@rnw-scripts/eslint-config": "1.1.7",
+    "eslint": "7.12.0",
+    "eslint-plugin-prettier": "2.6.2",
+    "flow-bin": "^0.152.0",
+    "just-scripts": "^1.3.3",
+    "prettier": "1.19.1",
+    "react": "17.0.2",
+    "react-native": "0.0.0-0d32aef3a",
+    "react-native-platform-override": "^1.4.17"
+  },
+  "peerDependencies": {
+    "react": "17.0.2",
+    "react-native": "0.0.0-0d32aef3a"
+  },
+  "beachball": {
+    "defaultNpmTag": "canary",
+    "disallowedChangeTypes": [
+      "major",
+      "minor",
+      "patch"
+    ]
+  },
+  "promoteRelease": true
+}

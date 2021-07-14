@@ -8,7 +8,6 @@
 
 namespace winrt::Microsoft::ReactNative::implementation {
 
-#ifndef CORE_ABI
 struct ReactSettingsSnapshot : winrt::implements<ReactSettingsSnapshot, IReactSettingsSnapshot> {
   ReactSettingsSnapshot(Mso::CntPtr<const Mso::React::IReactSettingsSnapshot> &&settings) noexcept;
 
@@ -31,15 +30,12 @@ struct ReactSettingsSnapshot : winrt::implements<ReactSettingsSnapshot, IReactSe
  private:
   Mso::CntPtr<const Mso::React::IReactSettingsSnapshot> m_settings;
 };
-#endif
 
 struct ReactContext : winrt::implements<ReactContext, IReactContext> {
   ReactContext(Mso::CntPtr<Mso::React::IReactContext> &&context) noexcept;
 
  public: // IReactContext
-#ifndef CORE_ABI
   IReactSettingsSnapshot SettingsSnapshot() noexcept;
-#endif
   IReactPropertyBag Properties() noexcept;
   IReactNotificationService Notifications() noexcept;
   IReactDispatcher UIDispatcher() noexcept;
@@ -67,9 +63,7 @@ struct ReactContext : winrt::implements<ReactContext, IReactContext> {
 
  private:
   Mso::CntPtr<Mso::React::IReactContext> m_context;
-#ifndef CORE_ABI
   ReactNative::IReactSettingsSnapshot m_settings{nullptr};
-#endif
 };
 
 } // namespace winrt::Microsoft::ReactNative::implementation

@@ -2,6 +2,227 @@
   "name": "react-native-windows",
   "entries": [
     {
+      "date": "Wed, 14 Jul 2021 06:00:50 GMT",
+      "tag": "react-native-windows_v0.0.0-canary.342",
+      "version": "0.0.0-canary.342",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Set ToolsVersion to Current",
+            "author": "julio.rocha@microsoft.com",
+            "commit": "5bb8b1d591e54a03efd10343200f4aba5a2a2441",
+            "package": "react-native-windows"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 13 Jul 2021 05:06:16 GMT",
+      "tag": "react-native-windows_v0.0.0-canary.341",
+      "version": "0.0.0-canary.341",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Use DispatcherTimer unless animation frame needed",
+            "author": "erozell@outlook.com",
+            "commit": "2568bd7494ade77ce3195d47b56132e8d1d661b6",
+            "package": "react-native-windows"
+          },
+          {
+            "comment": "DisconnectFromView can be called on an view that has no connected tag. Also fix exceptions to be thrown by value as the rest of the code expects them to be",
+            "author": "asklar@microsoft.com",
+            "commit": "a7817e9a7567d36ca778968103424e3f621d2142",
+            "package": "react-native-windows"
+          },
+          {
+            "comment": "Update Loading bundle UI, add ProgressRing",
+            "author": "asklar@microsoft.com",
+            "commit": "893cc074a62bc4cefe8ddd765e62397005f3350a",
+            "package": "react-native-windows"
+          },
+          {
+            "comment": " Consuming C# friendly hermes nuget package",
+            "author": "email not defined",
+            "commit": "89f210e075f5b3be09e17aed4208bfda6c632438",
+            "package": "react-native-windows"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 12 Jul 2021 05:05:31 GMT",
+      "tag": "react-native-windows_v0.0.0-canary.340",
+      "version": "0.0.0-canary.340",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Batch calls to alert() instead of crashing",
+            "author": "asklar@microsoft.com",
+            "commit": "f611124785552ba649b75fdc25740c614c7e953f",
+            "package": "react-native-windows"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 09 Jul 2021 05:06:27 GMT",
+      "tag": "react-native-windows_v0.0.0-canary.339",
+      "version": "0.0.0-canary.339",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Match native View.keyDownEvents behavior in JS.",
+            "author": "igklemen@microsoft.com",
+            "commit": "bc60ec2e253ae24960424399402bdccb16c591e5",
+            "package": "react-native-windows"
+          },
+          {
+            "comment": "Adds timestamp to onKeyUp/Down events",
+            "author": "erozell@outlook.com",
+            "commit": "1d99aa7aac653dd43eefb2a361208973cd01ecec",
+            "package": "react-native-windows"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Jul 2021 05:05:44 GMT",
+      "tag": "react-native-windows_v0.0.0-canary.338",
+      "version": "0.0.0-canary.338",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Add hooks to allow instance to be usable with pluggable UI platform",
+            "author": "30809111+acoates-ms@users.noreply.github.com",
+            "commit": "65320550fab613a2e65a3f29b00a40ca597ec89d",
+            "package": "react-native-windows"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 07 Jul 2021 05:06:28 GMT",
+      "tag": "react-native-windows_v0.0.0-canary.337",
+      "version": "0.0.0-canary.337",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Update Button Styling for 2.6",
+            "author": "34109996+chiaramooney@users.noreply.github.com",
+            "commit": "de57f7410efa57570db71f16cb6e5b7911ee3425",
+            "package": "react-native-windows"
+          },
+          {
+            "comment": "folly update",
+            "author": "agnel@microsoft.com",
+            "commit": "230c15749961cdb0c7ccbb14e4d1f188002b36e8",
+            "package": "react-native-windows"
+          }
+        ],
+        "none": [
+          {
+            "comment": "Add new VirtualizedList Tests from RN Core PR",
+            "author": "ngerlem@microsoft.com",
+            "commit": "ec31e5ce8ef24e189c1fce3645da3273223e3850",
+            "package": "react-native-windows"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 02 Jul 2021 05:06:31 GMT",
+      "tag": "react-native-windows_v0.0.0-canary.336",
+      "version": "0.0.0-canary.336",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Remove unnecessary line from GetCompositor",
+            "author": "erozell@outlook.com",
+            "commit": "3b7131b3e7e93b466700874addcc6e0172fab388",
+            "package": "react-native-windows"
+          },
+          {
+            "comment": "Fork VirtualizedList to its own package",
+            "author": "ngerlem@microsoft.com",
+            "commit": "81c98a6f0da42ec1287311b997fe323da5a1b284",
+            "package": "react-native-windows"
+          }
+        ],
+        "patch": [
+          {
+            "comment": "Bump @rnw-scripts/jest-out-of-tree-resolver to v1.0.2",
+            "author": "ngerlem@microsoft.com",
+            "commit": "81c98a6f0da42ec1287311b997fe323da5a1b284",
+            "package": "react-native-windows"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 30 Jun 2021 05:07:31 GMT",
+      "tag": "react-native-windows_v0.0.0-canary.335",
+      "version": "0.0.0-canary.335",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Enable List UTs in react-native-win32",
+            "author": "ngerlem@microsoft.com",
+            "commit": "21c441263b3ddc3acf57916a611d6a04e6f9d75c",
+            "package": "react-native-windows"
+          }
+        ],
+        "patch": [
+          {
+            "comment": "Bump @rnw-scripts/jest-out-of-tree-resolver to v1.0.1",
+            "author": "ngerlem@microsoft.com",
+            "commit": "21c441263b3ddc3acf57916a611d6a04e6f9d75c",
+            "package": "react-native-windows"
+          },
+          {
+            "comment": "Bump @rnw-scripts/jest-out-of-tree-snapshot-resolver to v1.0.1",
+            "author": "ngerlem@microsoft.com",
+            "commit": "21c441263b3ddc3acf57916a611d6a04e6f9d75c",
+            "package": "react-native-windows"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 29 Jun 2021 05:06:48 GMT",
+      "tag": "react-native-windows_v0.0.0-canary.334",
+      "version": "0.0.0-canary.334",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "add local nuspec for reunion",
+            "author": "asklar@microsoft.com",
+            "commit": "c4f72ef6cf80a6e20d9935c19fe70d0e13d631f7",
+            "package": "react-native-windows"
+          },
+          {
+            "comment": "Use in-process WS server for RNTesterIntegrationtests",
+            "author": "julio.rocha@microsoft.com",
+            "commit": "9bfaf3e08dfd25901f1889aae54351b4500e488c",
+            "package": "react-native-windows"
+          },
+          {
+            "comment": "Update MUX to 2.6.0",
+            "author": "34109996+chiaramooney@users.noreply.github.com",
+            "commit": "66330ea0cb051818c4c2ac9d9693d0797ef3db17",
+            "package": "react-native-windows"
+          }
+        ],
+        "none": [
+          {
+            "comment": "Bump @react-native-windows/cli to v0.0.0-canary.80",
+            "author": "ngerlem@microsoft.com",
+            "commit": "2646cb69f4e031799d04ecd5453aa9d44b48b261",
+            "package": "react-native-windows"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 27 Jun 2021 05:08:11 GMT",
       "tag": "react-native-windows_v0.0.0-canary.333",
       "version": "0.0.0-canary.333",

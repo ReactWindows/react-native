@@ -15,7 +15,7 @@
     <tags>react react-native react-native-windows native-module microsoft c# csharp</tags>
     <dependencies>
       <group targetFramework="UAP10.0">
-        <dependency id="Microsoft.UI.Xaml" version="2.5.0" />
+        <dependency id="Microsoft.UI.Xaml" version="2.6.0" />
         <dependency id="Microsoft.NETCore.UniversalWindowsPlatform" version="6.2.9" />
         <dependency id="Microsoft.ReactNative" version="$version$" />
         <dependency id="Microsoft.ReactNative.Managed.CodeGen" version="$version$" />

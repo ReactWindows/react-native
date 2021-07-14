@@ -7,6 +7,13 @@ const rnwPath = __dirname;
 const {resolve} = require('metro-resolver');
 const exclusionList = require('metro-config/src/defaults/exclusionList');
 
+const virtualizedListPath = fs.realpathSync(
+  path.resolve(
+    require.resolve('@react-native-windows/virtualized-list/package.json'),
+    '..',
+  ),
+);
+
 function reactNativePlatformResolver(platformImplementations) {
   return (context, _realModuleName, platform, moduleName) => {
     let backupResolveRequest = context.resolveRequest;
@@ -38,6 +45,8 @@ module.exports = {
   watchFolders: [
     // Include hoisted modules
     path.resolve(__dirname, '../node_modules'),
+    // Add virtualized-list dependency, whose unsymlinked representation is not in node_modules, only in our repo
+    virtualizedListPath,
   ],
 
   resolver: {
@@ -47,6 +56,7 @@ module.exports = {
     extraNodeModules: {
       // Redirect react-native-windows to this folder
       'react-native-windows': rnwPath,
+      '@react-native-windows/virtualized-list': virtualizedListPath,
     },
     blockList: exclusionList([
       // Avoid error EBUSY: resource busy or locked, open '...\vnext\msbuild.ProjectImports.zip' when building 'vnext\Microsoft.ReactNative.sln' with '/bl'

@@ -106,15 +106,15 @@ class WebSocketServer : public std::enable_shared_from_this<WebSocketServer>
   boost::asio::ip::tcp::acceptor m_acceptor;
   WebSocketServiceCallbacks m_callbacks;
   std::vector<std::shared_ptr<IWebSocketSession>> m_sessions;
-  bool m_isSecure;
+  bool m_useTLS;
 
   void Accept();
 
   void OnAccept(boost::system::error_code ec, boost::asio::ip::tcp::socket socket);
 
  public:
-  WebSocketServer(std::uint16_t port, bool isSecure);
-  WebSocketServer(int port, bool isSecure = false);
+  WebSocketServer(std::uint16_t port, bool useTLS);
+  WebSocketServer(int port, bool useTLS = false);
 
   void Start();
   void Stop();

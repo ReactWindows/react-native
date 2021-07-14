@@ -254,15 +254,32 @@ void ReactRootView::EnsureLoadingUI() noexcept {
     // Create Grid & TextBlock to hold text
     if (m_waitingTextBlock == nullptr) {
       m_waitingTextBlock = winrt::TextBlock();
+
       m_greenBoxGrid = winrt::Grid{};
-      m_greenBoxGrid.Background(xaml::Media::SolidColorBrush(winrt::ColorHelper::FromArgb(0xff, 0x03, 0x59, 0)));
+      auto c = xaml::Controls::ColumnDefinition{};
+      m_greenBoxGrid.ColumnDefinitions().Append(c);
+      c = xaml::Controls::ColumnDefinition{};
+      c.Width(xaml::GridLengthHelper::Auto());
+      m_greenBoxGrid.ColumnDefinitions().Append(c);
+      c = xaml::Controls::ColumnDefinition{};
+      c.Width(xaml::GridLengthHelper::Auto());
+      m_greenBoxGrid.ColumnDefinitions().Append(c);
+      c = xaml::Controls::ColumnDefinition{};
+      m_greenBoxGrid.ColumnDefinitions().Append(c);
+
+      m_waitingTextBlock.SetValue(xaml::Controls::Grid::ColumnProperty(), winrt::box_value(1));
+      m_greenBoxGrid.Background(xaml::Media::SolidColorBrush(winrt::ColorHelper::FromArgb(0x80, 0x03, 0x29, 0x29)));
       m_greenBoxGrid.Children().Append(m_waitingTextBlock);
       m_greenBoxGrid.VerticalAlignment(xaml::VerticalAlignment::Center);
+      xaml::Controls::ProgressRing ring{};
+      ring.SetValue(xaml::Controls::Grid::ColumnProperty(), winrt::box_value(2));
+      ring.IsActive(true);
+      m_greenBoxGrid.Children().Append(ring);
 
       // Format TextBlock
       m_waitingTextBlock.TextAlignment(winrt::TextAlignment::Center);
       m_waitingTextBlock.TextWrapping(xaml::TextWrapping::Wrap);
-      m_waitingTextBlock.FontFamily(winrt::FontFamily(L"Consolas"));
+      m_waitingTextBlock.FontFamily(winrt::FontFamily(L"Segoe UI"));
       m_waitingTextBlock.Foreground(xaml::Media::SolidColorBrush(winrt::Colors::White()));
       winrt::Thickness margin = {10.0f, 10.0f, 10.0f, 10.0f};
       m_waitingTextBlock.Margin(margin);

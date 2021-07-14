@@ -1,8 +1,80 @@
 # Change Log - jest-environment-winappdriver
 
-This log was last generated on Sun, 27 Jun 2021 05:08:11 GMT and should not be manually modified.
+This log was last generated on Wed, 14 Jul 2021 06:00:50 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.0.1
+
+Wed, 14 Jul 2021 06:00:50 GMT
+
+### Patches
+
+- Bump node-rnw-rpc to v1.0.11-19 (julio.rocha@microsoft.com)
+
+## 2.0.1-14
+
+Tue, 13 Jul 2021 05:06:16 GMT
+
+### Changes
+
+- Bump node-rnw-rpc to v1.0.11-18 (erozell@outlook.com)
+
+## 2.0.1-13
+
+Mon, 12 Jul 2021 05:05:31 GMT
+
+### Changes
+
+- Bump node-rnw-rpc to v1.0.11-17 (asklar@microsoft.com)
+
+## 2.0.1-12
+
+Fri, 09 Jul 2021 05:06:27 GMT
+
+### Changes
+
+- Bump node-rnw-rpc to v1.0.11-16 (igklemen@microsoft.com)
+
+## 2.0.1-11
+
+Thu, 08 Jul 2021 05:05:44 GMT
+
+### Changes
+
+- Bump node-rnw-rpc to v1.0.11-15 (30809111+acoates-ms@users.noreply.github.com)
+
+## 2.0.1-10
+
+Wed, 07 Jul 2021 05:06:28 GMT
+
+### Changes
+
+- Bump node-rnw-rpc to v1.0.11-14 (34109996+chiaramooney@users.noreply.github.com)
+
+## 2.0.1-9
+
+Fri, 02 Jul 2021 05:06:31 GMT
+
+### Changes
+
+- Bump node-rnw-rpc to v1.0.11-13 (erozell@outlook.com)
+
+## 2.0.1-8
+
+Wed, 30 Jun 2021 05:07:31 GMT
+
+### Changes
+
+- Bump node-rnw-rpc to v1.0.11-12 (ngerlem@microsoft.com)
+
+## 2.0.1-7
+
+Tue, 29 Jun 2021 05:06:48 GMT
+
+### Changes
+
+- Bump node-rnw-rpc to v1.0.11-11 (ngerlem@microsoft.com)
 
 ## 2.0.1-6
 

@@ -317,8 +317,8 @@ void SecureWebSocketSession::OnSslHandshake(error_code ec)
 
 #pragma region WebSocketServer
 
-WebSocketServer::WebSocketServer(uint16_t port, bool isSecure)
-  : m_acceptor{make_strand(m_context)}, m_sessions{}, m_isSecure{isSecure}
+WebSocketServer::WebSocketServer(uint16_t port, bool useTLS)
+  : m_acceptor{make_strand(m_context)}, m_sessions{}, m_useTLS{useTLS}
 {
   ip::tcp::endpoint ep{ip::make_address("0.0.0.0"), port};
   error_code ec;
@@ -360,7 +360,7 @@ WebSocketServer::WebSocketServer(uint16_t port, bool isSecure)
   }
 }
 
-WebSocketServer::WebSocketServer(int port, bool isSecure) : WebSocketServer(static_cast<uint16_t>(port), isSecure) {}
+WebSocketServer::WebSocketServer(int port, bool useTLS) : WebSocketServer(static_cast<uint16_t>(port), useTLS) {}
 
 void WebSocketServer::Start()
 {
@@ -403,7 +403,7 @@ void WebSocketServer::OnAccept(error_code ec, ip::tcp::socket socket)
   }
 
   std::shared_ptr<IWebSocketSession> session;
-  if (m_isSecure)
+  if (m_useTLS)
     session = std::shared_ptr<IWebSocketSession>(new SecureWebSocketSession(std::move(socket), m_callbacks));
   else
     session = std::shared_ptr<IWebSocketSession>(new WebSocketSession(std::move(socket), m_callbacks));

@@ -2,6 +2,36 @@
   "name": "@react-native-windows/cli",
   "entries": [
     {
+      "date": "Tue, 13 Jul 2021 05:06:16 GMT",
+      "tag": "@react-native-windows/cli_v0.0.0-canary.81",
+      "version": "0.0.0-canary.81",
+      "comments": {
+        "prerelease": [
+          {
+            "comment": "Consuming C# friendly hermes nuget package",
+            "author": "email not defined",
+            "commit": "89f210e075f5b3be09e17aed4208bfda6c632438",
+            "package": "@react-native-windows/cli"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 29 Jun 2021 05:06:48 GMT",
+      "tag": "@react-native-windows/cli_v0.0.0-canary.80",
+      "version": "0.0.0-canary.80",
+      "comments": {
+        "none": [
+          {
+            "comment": "Bump @react-native-windows/telemetry to v0.0.0-canary.22",
+            "author": "ngerlem@microsoft.com",
+            "commit": "2646cb69f4e031799d04ecd5453aa9d44b48b261",
+            "package": "@react-native-windows/cli"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 27 Jun 2021 05:08:11 GMT",
       "tag": "@react-native-windows/cli_v0.0.0-canary.80",
       "version": "0.0.0-canary.80",

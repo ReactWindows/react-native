@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include <CppWinRTIncludes.h>
 #include <cxxreact/CxxModule.h>
 #include <cxxreact/MessageQueueThread.h>
 
@@ -66,12 +67,18 @@ class Timing : public std::enable_shared_from_this<Timing> {
 
  private:
   std::weak_ptr<facebook::react::Instance> getInstance() noexcept;
-  void OnRendering();
+  void OnTick();
+  winrt::system::DispatcherQueueTimer EnsureDispatcherTimer();
+  void StartRendering();
+  void StartDispatcherTimer();
+  void StopTicks();
 
  private:
   TimingModule *m_parent;
   TimerQueue m_timerQueue;
   xaml::Media::CompositionTarget::Rendering_revoker m_rendering;
+  winrt::system::DispatcherQueueTimer m_dispatcherQueueTimer{nullptr};
+  bool m_usingRendering{false};
 };
 
 class TimingModule : public facebook::xplat::module::CxxModule {

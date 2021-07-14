@@ -2,6 +2,21 @@
   "name": "@react-native-windows/telemetry",
   "entries": [
     {
+      "date": "Tue, 29 Jun 2021 05:06:48 GMT",
+      "tag": "@react-native-windows/telemetry_v0.0.0-canary.22",
+      "version": "0.0.0-canary.22",
+      "comments": {
+        "none": [
+          {
+            "comment": "Deduplicate lockfile",
+            "author": "ngerlem@microsoft.com",
+            "commit": "2646cb69f4e031799d04ecd5453aa9d44b48b261",
+            "package": "@react-native-windows/telemetry"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 26 Jun 2021 05:06:48 GMT",
       "tag": "@react-native-windows/telemetry_v0.0.0-canary.22",
       "version": "0.0.0-canary.22",

@@ -30,6 +30,8 @@ param (
 
 	[switch] $NoRun,
 
+	[switch] $UseNodeWsServer,
+
 	[switch] $List,
 
 	[System.IO.FileInfo] $VsTest =	"${env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\Enterprise\" +
@@ -57,7 +59,9 @@ if ($List) {
 # Ensure test services are online.
 if (! $NoServers) {
 	$packager = Find-Packager
-	$wsServer = Find-WebSocketServer
+	if ($UseNodeWsServer.IsPresent) {
+		$wsServer = Find-WebSocketServer
+	}
 	$notFound = $false
 
 	if (!$packager) {
@@ -68,11 +72,11 @@ if (! $NoServers) {
 		Write-Host 'Found Packager.'
 	}
 
-	if (!$wsServer) {
+	if (!$wsServer -and $UseNodeWsServer.IsPresent) {
 		Write-Warning 'WebSocket server not found. Attempting to start...'
 		Start-WebSocketServer -ReactNativeLocation $ReactNativeLocation -NodePath $NodePath
 		$notFound = $true
-	} else {
+	} elseif ($UseNodeWsServer.IsPresent) {
 		Write-Host 'Found WebSocket server.'
 	}
 

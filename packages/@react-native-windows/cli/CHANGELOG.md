@@ -1,8 +1,16 @@
 # Change Log - @react-native-windows/cli
 
-This log was last generated on Sun, 27 Jun 2021 05:08:11 GMT and should not be manually modified.
+This log was last generated on Tue, 13 Jul 2021 05:06:16 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.0-canary.81
+
+Tue, 13 Jul 2021 05:06:16 GMT
+
+### Changes
+
+- Consuming C# friendly hermes nuget package (email not defined)
 
 ## 0.0.0-canary.80
 

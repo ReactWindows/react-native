@@ -1,0 +1,20 @@
+{
+  "name": "@rnw-scripts/jest-out-of-tree-snapshot-resolver",
+  "entries": [
+    {
+      "date": "Wed, 30 Jun 2021 05:07:31 GMT",
+      "tag": "@rnw-scripts/jest-out-of-tree-snapshot-resolver_v1.0.1",
+      "version": "1.0.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Initial release",
+            "author": "ngerlem@microsoft.com",
+            "commit": "21c441263b3ddc3acf57916a611d6a04e6f9d75c",
+            "package": "@rnw-scripts/jest-out-of-tree-snapshot-resolver"
+          }
+        ]
+      }
+    }
+  ]
+}

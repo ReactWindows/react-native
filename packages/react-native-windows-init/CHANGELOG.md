@@ -1,8 +1,28 @@
 # Change Log - react-native-windows-init
 
-This log was last generated on Sun, 27 Jun 2021 05:08:11 GMT and should not be manually modified.
+This log was last generated on Tue, 13 Jul 2021 05:06:16 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.1.61
+
+Tue, 13 Jul 2021 05:06:16 GMT
+
+### Patches
+
+-  Consuming C# friendly hermes nuget package (email not defined)
+
+### Changes
+
+- Bump @react-native-windows/cli to v0.0.0-canary.81 (email not defined)
+
+## 1.1.60
+
+Wed, 30 Jun 2021 05:07:31 GMT
+
+### Patches
+
+- Replace npm-registry with npm-registry-fetch (jthysell@microsoft.com)
 
 ## 1.1.59
 

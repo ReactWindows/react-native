@@ -350,61 +350,47 @@ function PressWithOnKeyDown() {
 
 function PressWithKeyCapture() {
   const [eventLog, setEventLog] = useState([]);
-  const [shouldStopPropagation, setShouldStopPropagation] = useState(false);
-  const toggleSwitch2 = () =>
-    setShouldStopPropagation(shouldStopPropagation => !shouldStopPropagation);
+  const [timesPressed, setTimesPressed] = useState(0);
 
-  function appendEvent(eventName) {
+  function logEvent(eventName) {
     const limit = 6;
     setEventLog(current => {
       return [eventName].concat(current.slice(0, limit - 1));
     });
-  }
-
-  function myKeyDown(event) {
-    appendEvent('keyDown ' + event.nativeEvent.code);
-
-    if (shouldStopPropagation) {
-      event.stopPropagation();
-    }
-  }
-
-  function myKeyUp(event) {
-    appendEvent('keyUp ' + event.nativeEvent.code);
-
-    if (shouldStopPropagation) {
-      event.stopPropagation();
-    }
-  }
-
-  function myKeyDownCapture(event) {
-    appendEvent('keyDownCapture ' + event.nativeEvent.code);
-
-    if (shouldStopPropagation) {
-      event.stopPropagation();
-    }
+    console.log(eventName);
   }
 
   return (
     <>
-      <View testID="pressable_feedback_events">
-        <View
-          style={[styles.row, styles.centered]}
-          onKeyDownCapture={event => myKeyDownCapture(event)}>
-          <Pressable
-            style={styles.wrapper}
-            onKeyDown={event => myKeyDown(event)}
-            onKeyUp={event => myKeyUp(event)}
-            onPress={() => appendEvent('press')}>
-            <Text style={styles.button}>Press Me</Text>
-          </Pressable>
-        </View>
-        <View style={styles.eventLogBox}>
-          {eventLog.map((e, ii) => (
-            <Text key={ii}>{e}</Text>
-          ))}
-        </View>
-        <Switch onValueChange={toggleSwitch2} value={shouldStopPropagation} />
+      <View
+        style={styles.row}
+        onKeyDown={event => logEvent('outer keyDown ' + event.nativeEvent.code)}
+        onKeyDownCapture={event =>
+          logEvent('outer keyDownCapture ' + event.nativeEvent.code)
+        }>
+        <Pressable
+          keyDownEvents={[
+            {code: 'KeyW', handledEventPhase: 3},
+            {code: 'KeyE', handledEventPhase: 1},
+          ]}
+          onKeyDown={event => logEvent('keyDown ' + event.nativeEvent.code)}
+          onKeyDownCapture={event =>
+            logEvent('keyDownCapture ' + event.nativeEvent.code)
+          }
+          onPress={() => {
+            setTimesPressed(current => current + 1);
+            logEvent('pressed ' + timesPressed);
+          }}>
+          {({pressed}) => (
+            <Text style={styles.text}>{pressed ? 'Pressed!' : 'Press Me'}</Text>
+          )}
+        </Pressable>
+      </View>
+
+      <View style={styles.eventLogBox}>
+        {eventLog.map((e, ii) => (
+          <Text key={ii}>{e}</Text>
+        ))}
       </View>
     </>
   );
@@ -658,9 +644,9 @@ exports.examples = [
   {
     title: 'OnKeyDownCapture on Pressable (View)',
     description: ('You can intercept routed KeyDown/KeyUp events by specifying the onKeyDownCapture/onKeyUpCapture callbacks.' +
-      " In the example below, set focus to the 'Press me' element (by tabbing into it), and start pressing letters (or any other keys) on the keyboard to observe the event log below." +
-      " Additionally, it's possible to control whether the intercepted event will continue down the route to its originating element, by toggling the switch below." +
-      " This specifies that the stopPropagation() method will be called on the event. When the switch is on, you'll see the KeyDown event doesn't show up after the KeyDownCapture for a given key.": string),
+      " In the example below, a <Pressable> is wrapper in a <View>, and each specifies onKeyDown and onKeyDownCapture callbacks. Set focus to the 'Press me' element by tabbing into it, and start pressing letters on the keyboard to observe the event log below." +
+      " Additionally, because the keyDownEvents prop is specified - keyDownEvents={[{code: 'KeyW', handledEventPhase: 3}, {code: 'KeyE', handledEventPhase: 1}]} - " +
+      'for these keys the event routing will be interrupted (by a call to event.stopPropagation()) at the phase specified (3 - bubbling, 1 - capturing) to match processing on the native side.': string),
     render: function(): React.Node {
       return <PressWithKeyCapture />;
     },

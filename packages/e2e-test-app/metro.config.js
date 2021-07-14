@@ -16,6 +16,13 @@ const rnwTesterPath = fs.realpathSync(
   path.dirname(require.resolve('@react-native-windows/tester/package.json')),
 );
 
+const virtualizedListPath = fs.realpathSync(
+  path.resolve(
+    require.resolve('@react-native-windows/virtualized-list/package.json'),
+    '..',
+  ),
+);
+
 module.exports = {
   // WatchFolders is only needed due to the yarn workspace layout of node_modules, we need to watch the symlinked locations separately
   watchFolders: [
@@ -24,6 +31,8 @@ module.exports = {
     // Include react-native-windows
     rnwPath,
     rnwTesterPath,
+    // Add virtualized-list dependency, whose unsymlinked representation is not in node_modules, only in our repo
+    virtualizedListPath,
   ],
 
   resolver: {
@@ -31,6 +40,7 @@ module.exports = {
       // Redirect metro to rnwPath instead of node_modules/react-native-windows, since metro doesn't like symlinks
       'react-native-windows': rnwPath,
       '@react-native-windows/tester': rnwTesterPath,
+      '@react-native-windows/virtualized-list': virtualizedListPath,
     },
     blockList: exclusionList([
       // Avoid error EBUSY: resource busy or locked, open 'D:\a\1\s\packages\e2e-test-app\msbuild.ProjectImports.zip' in pipeline

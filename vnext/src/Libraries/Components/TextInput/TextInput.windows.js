@@ -48,6 +48,7 @@ let RCTMultilineTextInputView;
 let RCTMultilineTextInputNativeCommands;
 let WindowsTextInput; // [Windows]
 let WindowsTextInputCommands; // [Windows]
+import type {KeyEvent} from '../../Types/CoreEventTypes'; // [Windows]
 
 // [Windows
 if (Platform.OS === 'android') {
@@ -1142,6 +1143,53 @@ function InternalTextInput(props: Props): React.Node {
   // TextInput handles onBlur and onFocus events
   // so omitting onBlur and onFocus pressability handlers here.
   const {onBlur, onFocus, ...eventHandlers} = usePressability(config) || {};
+  const eventPhase = Object.freeze({Capturing: 1, Bubbling: 3});
+  const _keyDown = (event: KeyEvent) => {
+    if (props.keyDownEvents && event.isPropagationStopped() !== true) {
+      for (const el of props.keyDownEvents) {
+        if (
+          event.nativeEvent.code == el.code &&
+          el.handledEventPhase == eventPhase.Bubbling
+        ) {
+          event.stopPropagation();
+        }
+      }
+    }
+    props.onKeyDown && props.onKeyDown(event);
+  };
+
+  const _keyUp = (event: KeyEvent) => {
+    if (props.keyUpEvents && event.isPropagationStopped() !== true) {
+      for (const el of props.keyUpEvents) {
+        if (event.nativeEvent.code == el.code && el.handledEventPhase == 3) {
+          event.stopPropagation();
+        }
+      }
+    }
+    props.onKeyUp && props.onKeyUp(event);
+  };
+
+  const _keyDownCapture = (event: KeyEvent) => {
+    if (props.keyDownEvents && event.isPropagationStopped() !== true) {
+      for (const el of props.keyDownEvents) {
+        if (event.nativeEvent.code == el.code && el.handledEventPhase == 1) {
+          event.stopPropagation();
+        }
+      }
+    }
+    props.onKeyDownCapture && props.onKeyDownCapture(event);
+  };
+
+  const _keyUpCapture = (event: KeyEvent) => {
+    if (props.keyUpEvents && event.isPropagationStopped() !== true) {
+      for (const el of props.keyUpEvents) {
+        if (event.nativeEvent.code == el.code && el.handledEventPhase == 1) {
+          event.stopPropagation();
+        }
+      }
+    }
+    props.onKeyUpCapture && props.onKeyUpCapture(event);
+  };
 
   if (Platform.OS === 'ios') {
     const RCTTextInputView =
@@ -1245,6 +1293,10 @@ function InternalTextInput(props: Props): React.Node {
         onSelectionChangeShouldSetResponder={emptyFunctionThatReturnsTrue}
         selection={selection}
         text={text}
+        onKeyDown={_keyDown}
+        onKeyDownCapture={_keyDownCapture}
+        onKeyUp={_keyUp}
+        onKeyUpCapture={_keyUpCapture}
       />
     );
   } // Windows]

@@ -59,7 +59,11 @@ struct DefaultRedBoxHandler : winrt::implements<DefaultRedBoxHandler, IRedBoxHan
 };
 
 IRedBoxHandler RedBoxHelper::CreateDefaultHandler(winrt::Microsoft::ReactNative::ReactNativeHost const &host) noexcept {
+#ifndef CORE_ABI
   return winrt::make<DefaultRedBoxHandler>(host);
+#else
+  return nullptr;
+#endif
 }
 
 } // namespace winrt::Microsoft::ReactNative::implementation

@@ -1,0 +1,35 @@
+{
+  "name": "@rnw-scripts/jest-out-of-tree-resolver",
+  "entries": [
+    {
+      "date": "Fri, 02 Jul 2021 05:06:31 GMT",
+      "tag": "@rnw-scripts/jest-out-of-tree-resolver_v1.0.2",
+      "version": "1.0.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Initial release",
+            "author": "ngerlem@microsoft.com",
+            "commit": "81c98a6f0da42ec1287311b997fe323da5a1b284",
+            "package": "@rnw-scripts/jest-out-of-tree-resolver"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 30 Jun 2021 05:07:31 GMT",
+      "tag": "@rnw-scripts/jest-out-of-tree-resolver_v1.0.1",
+      "version": "1.0.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Initial release",
+            "author": "ngerlem@microsoft.com",
+            "commit": "21c441263b3ddc3acf57916a611d6a04e6f9d75c",
+            "package": "@rnw-scripts/jest-out-of-tree-resolver"
+          }
+        ]
+      }
+    }
+  ]
+}

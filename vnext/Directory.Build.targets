@@ -31,6 +31,11 @@
     <Message Text="=> WinVer                  [$(WinVer)]" />
 
     <Message Text="%0A" />
+    <Message Text="MSBuild" />
+    <Message Text="=> MSBuildToolsVersion     [$(MSBuildToolsVersion)]" />
+    <Message Text="=> MSBuildToolsPath        [$(MSBuildToolsPath)]" />
+
+    <Message Text="%0A" />
     <Message Text="Microsoft.CppBuild.targets/MakeDirsForCl" />
     <Message Text="=> PrecompiledHeaderOutputFile [@(CLCompile->Metadata('PrecompiledHeaderOutputFile')->DirectoryName()->Distinct())]" />
     <Message Text="=> AssemblerListingLocation    [@(CLCompile->Metadata('AssemblerListingLocation')->DirectoryName()->Distinct())]" />

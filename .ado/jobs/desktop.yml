@@ -154,6 +154,7 @@ jobs:
           buildPlatform: $(BuildPlatform)
           buildConfiguration: $(BuildConfiguration)
           contents: |
+            React.Windows.Desktop\**
             React.Windows.Desktop.DLL\**
             React.Windows.Desktop.Test.DLL\**
 

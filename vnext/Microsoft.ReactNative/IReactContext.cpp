@@ -14,7 +14,6 @@ namespace winrt::Microsoft::ReactNative::implementation {
 // ReactSettingsSnapshot implementation
 //=============================================================================
 
-#ifndef CORE_ABI
 ReactSettingsSnapshot::ReactSettingsSnapshot(Mso::CntPtr<const Mso::React::IReactSettingsSnapshot> &&settings) noexcept
     : m_settings{std::move(settings)} {}
 
@@ -62,27 +61,16 @@ Mso::React::IReactSettingsSnapshot const &ReactSettingsSnapshot::GetInner() cons
   return *m_settings;
 }
 
-#endif
-
 //=============================================================================
 // ReactContext implementation
 //=============================================================================
 
-ReactContext::ReactContext(Mso::CntPtr<Mso::React::IReactContext> &&context) noexcept : m_context {
-  std::move(context)
-}
-#ifndef CORE_ABI
-, m_settings {
-  winrt::make<ReactSettingsSnapshot>(&m_context->SettingsSnapshot())
-}
-#endif
-{}
+ReactContext::ReactContext(Mso::CntPtr<Mso::React::IReactContext> &&context) noexcept
+    : m_context{std::move(context)}, m_settings{winrt::make<ReactSettingsSnapshot>(&m_context->SettingsSnapshot())} {}
 
-#ifndef CORE_ABI
 IReactSettingsSnapshot ReactContext::SettingsSnapshot() noexcept {
   return m_settings;
 }
-#endif
 
 IReactPropertyBag ReactContext::Properties() noexcept {
   return m_context->Properties();

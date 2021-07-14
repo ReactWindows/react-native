@@ -1,4 +1,5 @@
 module.exports = {
+  verbose: true,
   resolver: './jest-resolver.js',
   snapshotResolver: './jest-snapshot-resolver.js',
   transform: {

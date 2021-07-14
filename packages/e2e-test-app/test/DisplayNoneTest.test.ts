@@ -14,14 +14,14 @@ beforeAll(async () => {
 describe('DisplayNoneTest', () => {
   /* Test case #1: display:none disabled */
   test('DisplayNoneDisabledTest', async () => {
-    const dump = await dumpVisualTree('view-component-switch-view');
+    const dump = await dumpVisualTree('textbox-container');
     expect(dump).toMatchSnapshot();
   });
 
   /* Test case #2: Enable display:none once, update view*/
   test('DisplayNoneEnabledTest', async () => {
     await toggleDisplayNone();
-    const dump = await dumpVisualTree('view-component-switch-view');
+    const dump = await dumpVisualTree('textbox-container');
     expect(dump).toMatchSnapshot();
   });
 });

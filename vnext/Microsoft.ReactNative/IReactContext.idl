@@ -13,7 +13,6 @@ import "IReactPropertyBag.idl";
 
 namespace Microsoft.ReactNative
 {
-#ifndef CORE_ABI
   [webhosthidden]
   DOC_STRING("An immutable snapshot of the @ReactInstanceSettings used to create the current React instance.")
   interface IReactSettingsSnapshot
@@ -92,7 +91,6 @@ namespace Microsoft.ReactNative
       "The `.bundle` extension will be appended to the end, when looking for the bundle file.")
     String JavaScriptBundleFile { get; };
   }
-#endif
 
   [webhosthidden]
   DOC_STRING(
@@ -109,10 +107,8 @@ namespace Microsoft.ReactNative
     "- Use @.JSDispatcher to post asynchronous work in the JavaScript engine thread.")
   interface IReactContext
   {
-#ifndef CORE_ABI
     DOC_STRING("Gets the settings snapshot that was used to start the React instance.")
     IReactSettingsSnapshot SettingsSnapshot { get; };
-#endif
 
     DOC_STRING(
       "Gets @IReactPropertyBag shared with the @ReactInstanceSettings.Properties.\n"

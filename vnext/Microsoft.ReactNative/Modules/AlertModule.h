@@ -6,6 +6,7 @@
 #include <winrt/Windows.ApplicationModel.h>
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Graphics.Display.h>
+#include <queue>
 
 namespace Microsoft::ReactNative {
 
@@ -37,6 +38,15 @@ struct Alert : public std::enable_shared_from_this<Alert> {
 
  private:
   React::ReactContext m_context;
+
+  struct AlertRequest {
+    ShowAlertArgs args;
+    std::function<void(std::string)> result;
+  };
+
+  std::queue<AlertRequest> pendingAlerts{};
+
+  void ProcessPendingAlertRequests() noexcept;
 };
 
 } // namespace Microsoft::ReactNative

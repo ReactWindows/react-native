@@ -276,8 +276,6 @@ class Button extends React.Component<
     super(props);
     this.state = {
       hover: false,
-      // Workaround for MUX2.5; remove after update to MUX2.6 is completed.
-      // https://github.com/microsoft/react-native-windows/issues/7425
       pressed: false,
     };
   }
@@ -354,8 +352,6 @@ class Button extends React.Component<
           onPress={onPress}
           tabIndex={tabIndex}
           touchSoundDisabled={touchSoundDisabled}
-          // Workaround for MUX2.5; remove after update to MUX2.6 is completed.
-          // https://github.com/microsoft/react-native-windows/issues/7425
           underlayColor={PlatformColor('ButtonBackgroundPressed')}
           onShowUnderlay={() => {
             this.setState({pressed: true});
@@ -364,16 +360,22 @@ class Button extends React.Component<
             this.setState({pressed: false});
           }}
           style={
-            this.state.hover && !this.state.pressed
+            this.state.pressed
+              ? [
+                  buttonStyles,
+                  {
+                    borderColor: PlatformColor('ButtonBorderBrushPressed'),
+                    borderBottomWidth: 1,
+                  },
+                ]
+              : this.state.hover
               ? [
                   buttonStyles,
                   {
                     backgroundColor: PlatformColor(
                       'ButtonBackgroundPointerOver',
                     ),
-                    // Workaround for MUX2.5; remove after update to MUX2.6 is completed.
-                    // https://github.com/microsoft/react-native-windows/issues/7425
-                    opacity: 0.1,
+                    borderColor: PlatformColor('ButtonBorderBrushPointerOver'),
                   },
                 ]
               : buttonStyles
@@ -384,7 +386,25 @@ class Button extends React.Component<
           onMouseLeave={() => {
             if (!disabled) this.setState({hover: false});
           }}>
-          <Text style={textStyles} disabled={disabled}>
+          <Text
+            style={
+              this.state.pressed
+                ? [
+                    textStyles,
+                    {
+                      color: PlatformColor('ButtonForegroundPressed'),
+                    },
+                  ]
+                : this.state.hover
+                ? [
+                    textStyles,
+                    {
+                      color: PlatformColor('ButtonForegroundPointerOver'),
+                    },
+                  ]
+                : textStyles
+            }
+            disabled={disabled}>
             {formattedTitle}
           </Text>
         </Touchable>
@@ -433,6 +453,9 @@ const styles = StyleSheet.create({
     windows: {
       backgroundColor: PlatformColor('ButtonBackground'),
       borderRadius: 3,
+      borderColor: PlatformColor('ButtonBorderBrush'),
+      borderWidth: 1,
+      borderBottomWidth: 1.5,
     },
     // Windows]
   }),
@@ -466,6 +489,7 @@ const styles = StyleSheet.create({
     },
     windows: {
       backgroundColor: PlatformColor('ButtonBackgroundDisabled'),
+      borderColor: PlatformColor('ButtonBorderBrushDisabled'),
     },
   }),
   textDisabled: Platform.select({

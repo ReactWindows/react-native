@@ -7,7 +7,7 @@
 
   <PropertyGroup Label="WinUI2x versioning">
 		<!--This value is also used by the CLI, see /packages/@react-native-windows/generate-windows -->
-    <WinUI2xVersion Condition="'$(WinUI2xVersion)'==''">2.5.0</WinUI2xVersion>
+    <WinUI2xVersion Condition="'$(WinUI2xVersion)'==''">2.6.0</WinUI2xVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(UseWinUI3)'=='true'">

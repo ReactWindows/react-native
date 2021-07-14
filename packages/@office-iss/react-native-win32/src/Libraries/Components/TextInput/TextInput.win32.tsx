@@ -26,10 +26,10 @@
 import React from 'react'
 import {
   findNodeHandle,
-  NativeModules,
   requireNativeComponent,
   TextInputProps,
   NativeMethods,
+  UIManager
 } from 'react-native';
 import {
   IBlurEvent,
@@ -49,7 +49,7 @@ const RCTTextInput = requireNativeComponent<RCTTextInputProps>('RCTTextInput');
 
 // Adding typings on ViewManagers is problematic as available functionality is not known until
 // registration at runtime and would require native and js to always be in sync.
-const TextInputViewManager: any = NativeModules.UIManager.getViewManagerConfig('RCTTextInput');
+const TextInputViewManager: any = UIManager.getViewManagerConfig('RCTTextInput');
 
 class TextInput extends React.Component<TextInputProps, {}> {
   // TODO: Once the native side begins supporting programmatic selection
@@ -152,7 +152,7 @@ class TextInput extends React.Component<TextInputProps, {}> {
    */
   public focus = (): void => {
     TextInputState.setFocusedTextInput(this);
-    NativeModules.UIManager.
+    UIManager.
       dispatchViewManagerCommand(findNodeHandle(this), TextInputViewManager.Commands.focus, null);
   }
 
@@ -161,7 +161,7 @@ class TextInput extends React.Component<TextInputProps, {}> {
    */
   public blur = (): void => {
     TextInputState.blurTextInput(this);
-    NativeModules.UIManager.
+    UIManager.
       dispatchViewManagerCommand(findNodeHandle(this), TextInputViewManager.Commands.blur, null);
   }
 
@@ -173,16 +173,16 @@ class TextInput extends React.Component<TextInputProps, {}> {
   }
 
   private readonly setEventCount = (): void => {
-    NativeModules.UIManager.
+    UIManager.
       dispatchViewManagerCommand(findNodeHandle(this), TextInputViewManager.Commands.setEventCount,
-        { eventCount: this._eventCount });
+        [ this._eventCount ]);
   }
 
   private readonly setNativeText = (val: string): void => {
     if (this._lastNativeText !== val) {
-      NativeModules.UIManager.
+      UIManager.
         dispatchViewManagerCommand(findNodeHandle(this), TextInputViewManager.Commands.setNativeText,
-          { text: val });
+          [ val ]);
     }
   }
 
