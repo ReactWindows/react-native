@@ -5,11 +5,11 @@
  */
 
 import ci from 'ci-info';
-import nodeMachineId from 'node-machine-id';
+import {machineIdSync} from 'node-machine-id';
 import osLocale from 'os-locale';
 
 export function deviceId(): string {
-  return nodeMachineId.machineIdSync(false);
+  return machineIdSync(false);
 }
 
 export function deviceLocale(): string {
@@ -35,6 +35,6 @@ export function ciType(): string {
 export function isMsftInternal(): boolean {
   return (
     process.env.UserDNSDomain !== undefined &&
-    process.env.UserDNSDomain.toLowerCase().endsWith('.microsoft.com')
+    process.env.UserDNSDomain.toLowerCase().endsWith('corp.microsoft.com')
   );
 }
