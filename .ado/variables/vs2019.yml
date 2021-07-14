@@ -1,6 +1,7 @@
 variables:
   VmImage: windows-2019
   AgentPool.Medium: rnw-pool-4
+  AgentPool.Interactive: rnw-pool-4-ui
   AgentPool.Large: windevbuildagents
   MSBuildVersion: 16.0
   GoogleTestAdapterPathExpression: '(Get-ChildItem "${env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\Extensions\" -Directory | Where-Object -FilterScript { Test-Path $_\GoogleTestAdapter.Core.dll}).FullName'
