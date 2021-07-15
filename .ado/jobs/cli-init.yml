@@ -162,6 +162,14 @@ jobs:
             additionalInitArguments: --useHermes
             additionalRunArguments:
             verifyAppLaunch: false
+          X64ReleaseCsHermes:
+            language: cs
+            configuration: Release
+            platform: x64
+            projectType: app
+            additionalInitArguments: --useHermes
+            additionalRunArguments:
+            verifyAppLaunch: true
           Arm64ReleaseCsHermes:
             language: cs
             configuration: Release
