@@ -176,7 +176,7 @@ jobs:
             platform: arm64
             projectType: app
             additionalInitArguments: --useHermes
-            additionalRunArguments:
+            additionalRunArguments: --no-deploy # We don't have Arm agents
             verifyAppLaunch: false
           X64ReleaseCppHermes:
             language: cpp
