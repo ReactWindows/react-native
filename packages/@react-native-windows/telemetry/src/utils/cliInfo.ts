@@ -12,8 +12,15 @@ export function isCliTest(): boolean {
   return process.env.RNW_CLI_TEST === 'true';
 }
 
-export function generateSessionId(): string {
-  return randomBytes(16).toString('hex');
+let sessionId: string | undefined;
+
+export function getSessionId(): string {
+  return (
+    sessionId ??
+    (sessionId = randomBytes(16)
+      .toString('hex')
+      .padStart(32, '0'))
+  );
 }
 
 function getVersionFromCommand(command: string): string | null {

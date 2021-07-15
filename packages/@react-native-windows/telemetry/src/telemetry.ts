@@ -19,7 +19,7 @@ export interface TelemetryOptions {
 }
 
 export class Telemetry {
-  static client?: appInsights.TelemetryClient | undefined = undefined;
+  static client?: appInsights.TelemetryClient = undefined;
   static options: TelemetryOptions = {
     setupString: '795006ca-cf54-40ee-8bc6-03deb91401c3',
     shouldDisable: false,
@@ -82,7 +82,7 @@ export class Telemetry {
       Telemetry.client!.commonProperties.isTest = 'true';
     }
 
-    Telemetry.client!.commonProperties.sessionId = cliInfo.generateSessionId();
+    Telemetry.client!.commonProperties.sessionId = cliInfo.getSessionId();
   }
 
   /** Sets up any telemetry processors  */
@@ -92,6 +92,7 @@ export class Telemetry {
     }
   }
 
+  /** Enables telemetry transmission */
   static enable() {
     if (Telemetry.client) {
       Telemetry.client.config.disableAppInsights = false;
@@ -99,6 +100,7 @@ export class Telemetry {
     Telemetry.options.shouldDisable = false;
   }
 
+  /** Disables telemetry transmission */
   static disable() {
     if (Telemetry.client) {
       Telemetry.client.config.disableAppInsights = true;
