@@ -7,15 +7,32 @@
 import path from 'path';
 import * as appInsights from 'applicationinsights';
 import {execSync} from 'child_process';
-import {CodedError} from './CodedError';
+import {CodedError, CodedErrorType} from './CodedError';
 
 import * as baseInfo from './utils/baseInfo';
-import * as cliInfo from './utils/cliInfo';
+import * as projectInfo from './utils/projectInfo';
 
 export interface TelemetryOptions {
   setupString: string;
   shouldDisable: boolean;
   preserveErrorMessages: boolean;
+}
+
+export interface CommandStartInfo {
+  commandName: string;
+  defaultOptions: Record<string, string>;
+  options: Record<string, string>;
+}
+
+export interface CommandEndInfo {
+  resultCode: CodedErrorType;
+}
+
+interface CommandInfo {
+  startTime?: string;
+  endTime?: string;
+  startInfo?: CommandStartInfo;
+  endInfo?: CommandEndInfo;
 }
 
 export class Telemetry {
@@ -25,6 +42,10 @@ export class Telemetry {
     shouldDisable: false,
     preserveErrorMessages: false,
   };
+
+  private static commandInfo: CommandInfo = {};
+  private static readonly versionInfo: Record<string, string> = {};
+  private static appProjectInfo?: projectInfo.ProjectInfo = undefined;
 
   /** Sets up the Telemetry static to be used elsewhere. */
   static setup(options?: Partial<TelemetryOptions>) {
@@ -39,13 +60,12 @@ export class Telemetry {
     Telemetry.setupClient();
 
     Telemetry.setupBaseProperties();
-    Telemetry.setupCliProperties();
     Telemetry.setupTelemetryProcessors();
   }
 
   /** Sets up Telemetry.client. */
   private static setupClient() {
-    if (!cliInfo.isCliTest()) {
+    if (!baseInfo.isCliTest()) {
       appInsights.Configuration.setInternalLogging(false, false);
     }
 
@@ -74,15 +94,12 @@ export class Telemetry {
       .toString();
 
     Telemetry.client!.config.samplingPercentage = baseInfo.sampleRate();
-  }
 
-  /** Sets up any properties that CLI telemetry events require. */
-  private static setupCliProperties() {
-    if (cliInfo.isCliTest()) {
+    if (baseInfo.isCliTest()) {
       Telemetry.client!.commonProperties.isTest = 'true';
     }
 
-    Telemetry.client!.commonProperties.sessionId = cliInfo.getSessionId();
+    Telemetry.client!.commonProperties.sessionId = baseInfo.getSessionId();
   }
 
   /** Sets up any telemetry processors  */
@@ -108,7 +125,54 @@ export class Telemetry {
     Telemetry.options.shouldDisable = true;
   }
 
+  static addVersionInfo(info: Record<string, string>) {
+    if (!Telemetry.client) {
+      return;
+    }
+
+    Object.assign(Telemetry.versionInfo, info);
+  }
+
+  static setAppProjectInfo(info: projectInfo.AppProjectInfo) {
+    if (!Telemetry.client) {
+      return;
+    }
+
+    Telemetry.appProjectInfo = info;
+    console.log(Telemetry.appProjectInfo);
+  }
+
+  static startCommand(info: CommandStartInfo) {
+    if (!Telemetry.client) {
+      return;
+    }
+
+    if (Telemetry.commandInfo.startInfo) {
+      return;
+    }
+
+    Telemetry.commandInfo.startTime = Date();
+    Telemetry.commandInfo.startInfo = info;
+  }
+
+  static endCommand(info: CommandEndInfo) {
+    if (!Telemetry.client) {
+      return;
+    }
+
+    if (!Telemetry.commandInfo.startInfo) {
+      return;
+    }
+
+    Telemetry.commandInfo.endTime = Date();
+    Telemetry.commandInfo.endInfo = info;
+  }
+
   static trackException(e: Error, properties?: Record<string, any>) {
+    if (!Telemetry.client) {
+      return;
+    }
+
     const props: Record<string, any> = {};
     if (e instanceof CodedError) {
       Object.assign(props, (e as CodedError).data);
@@ -121,7 +185,7 @@ export class Telemetry {
       }
     }
     Object.assign(props, props, properties);
-    Telemetry.client?.trackException({
+    Telemetry.client.trackException({
       exception: e,
       properties: props,
     });

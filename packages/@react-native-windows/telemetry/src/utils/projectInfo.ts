@@ -4,18 +4,18 @@
  * @format
  */
 
-export interface TelemetryProject {
+export interface ProjectInfo {
   id: string;
   platforms: Array<string>;
   rnwLang: 'cpp' | 'cs' | null;
 }
 
-export interface TelemetryLibProject extends TelemetryProject {}
+export interface DependencyProjectInfo extends ProjectInfo {}
 
-export interface TelemetryAppProject extends TelemetryProject {
+export interface AppProjectInfo extends ProjectInfo {
   usesTS: boolean;
   usesRNConfig: boolean;
   jsEngine: string;
   rnwSource: string;
-  dependencies: Array<TelemetryLibProject>;
+  dependencies: Array<DependencyProjectInfo>;
 }

@@ -5,6 +5,7 @@
  */
 
 import ci from 'ci-info';
+import {randomBytes} from 'crypto';
 import {machineIdSync} from 'node-machine-id';
 import osLocale from 'os-locale';
 
@@ -36,5 +37,20 @@ export function isMsftInternal(): boolean {
   return (
     process.env.UserDNSDomain !== undefined &&
     process.env.UserDNSDomain.toLowerCase().endsWith('corp.microsoft.com')
+  );
+}
+
+export function isCliTest(): boolean {
+  return process.env.RNW_CLI_TEST === 'true';
+}
+
+let sessionId: string | undefined;
+
+export function getSessionId(): string {
+  return (
+    sessionId ??
+    (sessionId = randomBytes(16)
+      .toString('hex')
+      .padStart(32, '0'))
   );
 }
