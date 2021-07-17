@@ -9,6 +9,8 @@ import fs from 'fs';
 import path from 'path';
 import {
   Telemetry,
+  TelemetryOptions,
+  CommandStartInfo,
   isMSFTInternal,
   getDiskFreeSpace,
   CodedError,
@@ -64,6 +66,18 @@ function getPkgVersion(pkgName: string): string {
   return '';
 }
 
+function getCommandStartInfo(options: RunWindowsOptions): CommandStartInfo {
+  const startInfo: CommandStartInfo = {
+    commandName: 'run-windows',
+    defaultOptions: {},
+    options: {},
+  };
+
+  Object.assign(startInfo.options, options);
+
+  return startInfo;
+}
+
 /**
  * Labels used by telemtry to represent current operation
  */
@@ -86,14 +100,12 @@ async function runWindows(
   config: Config,
   options: RunWindowsOptions,
 ) {
-  if (!options.telemetry) {
-    if (options.logging) {
-      console.log('Disabling telemetry');
-    }
-    Telemetry.disable();
-  } else {
-    Telemetry.setup();
+  if (options.logging && !options.telemetry) {
+    console.log('Disabling telemetry');
   }
+
+  Telemetry.setup({shouldDisable: options.telemetry === true});
+  Telemetry.startCommand(getCommandStartInfo(options));
 
   // https://github.com/yarnpkg/yarn/issues/8334 - Yarn on Windows breaks apps that read from the environment variables
   // Yarn will run node via CreateProcess and pass npm_config_* variables in lowercase without unifying their value

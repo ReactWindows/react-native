@@ -4,5 +4,12 @@
  * @format
  */
 
-export {Telemetry, isMSFTInternal, getDiskFreeSpace} from './telemetry';
+export {
+  Telemetry,
+  TelemetryOptions,
+  CommandStartInfo,
+  CommandEndInfo,
+  isMSFTInternal,
+  getDiskFreeSpace,
+} from './telemetry';
 export {CodedError, CodedErrorType, CodedErrors} from './CodedError';

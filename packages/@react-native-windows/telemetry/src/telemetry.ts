@@ -5,61 +5,174 @@
  */
 
 import path from 'path';
-import {randomBytes} from 'crypto';
 import * as appInsights from 'applicationinsights';
 import {execSync} from 'child_process';
-import {CodedError} from './CodedError';
+import {CodedError, CodedErrorType} from './CodedError';
+
+import * as baseInfo from './utils/baseInfo';
+import * as projectInfo from './utils/projectInfo';
+
+export interface TelemetryOptions {
+  setupString: string;
+  shouldDisable: boolean;
+  preserveErrorMessages: boolean;
+}
+
+export interface CommandStartInfo {
+  commandName: string;
+  defaultOptions: Record<string, string>;
+  options: Record<string, string>;
+}
+
+export interface CommandEndInfo {
+  resultCode: CodedErrorType;
+}
+
+interface CommandInfo {
+  startTime?: string;
+  endTime?: string;
+  startInfo?: CommandStartInfo;
+  endInfo?: CommandEndInfo;
+}
 
 export class Telemetry {
-  static client?: appInsights.TelemetryClient | undefined = undefined;
+  static client?: appInsights.TelemetryClient = undefined;
+  static options: TelemetryOptions = {
+    setupString: '795006ca-cf54-40ee-8bc6-03deb91401c3',
+    shouldDisable: false,
+    preserveErrorMessages: false,
+  };
 
-  static disable() {
+  private static commandInfo: CommandInfo = {};
+  private static readonly versionInfo: Record<string, string> = {};
+  private static appProjectInfo?: projectInfo.ProjectInfo = undefined;
+
+  /** Sets up the Telemetry static to be used elsewhere. */
+  static setup(options?: Partial<TelemetryOptions>) {
     if (Telemetry.client) {
-      Telemetry.client.config.disableAppInsights = true;
+      // Bail since we've already setup
+      return;
     }
-    Telemetry.shouldDisable = true;
+
+    // Save off options for later
+    Object.assign(Telemetry.options, options);
+
+    Telemetry.setupClient();
+
+    Telemetry.setupBaseProperties();
+    Telemetry.setupTelemetryProcessors();
   }
 
-  static setup(preserveMessages?: boolean) {
-    if (Telemetry.isCI()) {
-      this.disable();
-      return;
-    }
-    if (Telemetry.client) {
-      return;
-    }
-    if (!process.env.RNW_CLI_TEST) {
+  /** Sets up Telemetry.client. */
+  private static setupClient() {
+    if (!baseInfo.isCliTest()) {
       appInsights.Configuration.setInternalLogging(false, false);
     }
-    appInsights.setup('795006ca-cf54-40ee-8bc6-03deb91401c3');
+
+    appInsights.setup(this.options.setupString);
     Telemetry.client = appInsights.defaultClient;
 
-    if (Telemetry.shouldDisable) {
-      Telemetry.disable();
+    // Disable
+    if (
+      Telemetry.options.shouldDisable ||
+      (baseInfo.isCI() && !baseInfo.captureCI())
+    ) {
+      this.disable();
     }
-    Telemetry.preserveMessages = preserveMessages ? true : false;
+  }
 
-    if (process.env.RNW_CLI_TEST) {
-      Telemetry.client.commonProperties.isTest = process.env.RNW_CLI_TEST;
+  /** Sets up any base properties that all telemetry events require. */
+  private static setupBaseProperties() {
+    Telemetry.client!.commonProperties.deviceId = baseInfo.deviceId();
+    Telemetry.client!.commonProperties.deviceLocale = baseInfo.deviceLocale();
+    Telemetry.client!.commonProperties.ciCaptured = baseInfo
+      .captureCI()
+      .toString();
+    Telemetry.client!.commonProperties.ciType = baseInfo.ciType();
+    Telemetry.client!.commonProperties.isMsftInternal = baseInfo
+      .isMsftInternal()
+      .toString();
+
+    Telemetry.client!.config.samplingPercentage = baseInfo.sampleRate();
+
+    if (baseInfo.isCliTest()) {
+      Telemetry.client!.commonProperties.isTest = 'true';
     }
-    if (!Telemetry.client.commonProperties.sessionId) {
-      Telemetry.client.commonProperties.sessionId = randomBytes(16).toString(
-        'hex',
-      );
+
+    Telemetry.client!.commonProperties.sessionId = baseInfo.getSessionId();
+  }
+
+  /** Sets up any telemetry processors  */
+  private static setupTelemetryProcessors() {
+    if (Telemetry.client) {
       Telemetry.client.addTelemetryProcessor(sanitizeEnvelope);
     }
   }
 
-  static isCI(): boolean {
-    return (
-      process.env.AGENT_NAME !== undefined || // Azure DevOps
-      process.env.CIRCLECI === 'true' || // CircleCI
-      process.env.TRAVIS === 'true' || // Travis
-      process.env.CI === 'true' // other CIs
-    );
+  /** Enables telemetry transmission */
+  static enable() {
+    if (Telemetry.client) {
+      Telemetry.client.config.disableAppInsights = false;
+    }
+    Telemetry.options.shouldDisable = false;
+  }
+
+  /** Disables telemetry transmission */
+  static disable() {
+    if (Telemetry.client) {
+      Telemetry.client.config.disableAppInsights = true;
+    }
+    Telemetry.options.shouldDisable = true;
+  }
+
+  static addVersionInfo(info: Record<string, string>) {
+    if (!Telemetry.client) {
+      return;
+    }
+
+    Object.assign(Telemetry.versionInfo, info);
+  }
+
+  static setAppProjectInfo(info: projectInfo.AppProjectInfo) {
+    if (!Telemetry.client) {
+      return;
+    }
+
+    Telemetry.appProjectInfo = info;
+    console.log(Telemetry.appProjectInfo);
+  }
+
+  static startCommand(info: CommandStartInfo) {
+    if (!Telemetry.client) {
+      return;
+    }
+
+    if (Telemetry.commandInfo.startInfo) {
+      return;
+    }
+
+    Telemetry.commandInfo.startTime = Date();
+    Telemetry.commandInfo.startInfo = info;
+  }
+
+  static endCommand(info: CommandEndInfo) {
+    if (!Telemetry.client) {
+      return;
+    }
+
+    if (!Telemetry.commandInfo.startInfo) {
+      return;
+    }
+
+    Telemetry.commandInfo.endTime = Date();
+    Telemetry.commandInfo.endInfo = info;
   }
 
   static trackException(e: Error, properties?: Record<string, any>) {
+    if (!Telemetry.client) {
+      return;
+    }
+
     const props: Record<string, any> = {};
     if (e instanceof CodedError) {
       Object.assign(props, (e as CodedError).data);
@@ -72,14 +185,11 @@ export class Telemetry {
       }
     }
     Object.assign(props, props, properties);
-    Telemetry.client?.trackException({
+    Telemetry.client.trackException({
       exception: e,
       properties: props,
     });
   }
-
-  static shouldDisable: boolean = false;
-  static preserveMessages: boolean = false;
 }
 
 function getAnonymizedPath(filepath: string): string {
@@ -179,7 +289,7 @@ export function sanitizeEnvelope(envelope: any /*context: any*/): boolean {
       // The message may contain PII information. This can be sanitized, but for now delete it.
       // Note that the type of data.exceptions[0] is always going to be ExceptionDetails. It is not the original thrown exception.
       // https://github.com/microsoft/ApplicationInsights-node.js/issues/707
-      if (Telemetry.preserveMessages) {
+      if (Telemetry.options.preserveErrorMessages) {
         exception.message = sanitizeMessage(exception.message);
       } else {
         delete exception.message;
