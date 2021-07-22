@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "Fix crash in Islands when opening Flyout without a target #6714",
+  "packageName": "react-native-windows",
+  "email": "lyahdav@users.noreply.github.com",
+  "dependentChangeType": "patch"
+}
