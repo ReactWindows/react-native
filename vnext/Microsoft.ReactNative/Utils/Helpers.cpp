@@ -78,6 +78,10 @@ bool IsAPIContractV8Available() {
   return IsAPIContractVxAvailable<8>();
 }
 
+bool IsAPIContractV12Available() {
+  return IsAPIContractVxAvailable<12>();
+}
+
 bool IsRS3OrHigher() {
   return IsAPIContractV5Available();
 }
@@ -92,6 +96,10 @@ bool IsRS5OrHigher() {
 
 bool Is19H1OrHigher() {
   return IsAPIContractV8Available();
+}
+
+bool Is21H1OrHigher() {
+  return IsAPIContractV12Available();
 }
 
 bool IsXamlIsland() {

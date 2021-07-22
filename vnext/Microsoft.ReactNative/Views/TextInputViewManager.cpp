@@ -6,6 +6,7 @@
 #include "TextInputViewManager.h"
 
 #include "Unicode.h"
+#include "Utils/XamlIslandUtils.h"
 
 #include <UI.Xaml.Controls.h>
 #include <UI.Xaml.Input.h>
@@ -206,11 +207,13 @@ void TextInputShadowNode::registerEvents() {
     m_passwordBoxPasswordChangedRevoker = {};
     m_passwordBoxPasswordChangingRevoker = {};
     auto textBox = control.as<xaml::Controls::TextBox>();
+    EnsureUniqueTextFlyoutForXamlIsland(textBox);
     m_textBoxTextChangingRevoker = textBox.TextChanging(
         winrt::auto_revoke, [=](auto &&, auto &&) { dispatchTextInputChangeEvent(textBox.Text()); });
   } else {
     m_textBoxTextChangingRevoker = {};
     auto passwordBox = control.as<xaml::Controls::PasswordBox>();
+    EnsureUniqueTextFlyoutForXamlIsland(passwordBox);
     if (control.try_as<xaml::Controls::IPasswordBox4>()) {
       m_passwordBoxPasswordChangingRevoker = passwordBox.PasswordChanging(
           winrt::auto_revoke, [=](auto &&, auto &&) { dispatchTextInputChangeEvent(passwordBox.Password()); });

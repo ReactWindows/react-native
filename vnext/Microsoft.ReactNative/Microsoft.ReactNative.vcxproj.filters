@@ -293,6 +293,9 @@
     <ClCompile Include="Utils\ValueUtils.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Utils\XamlIslandUtils.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
     <ClCompile Include="JsiApi.cpp" />
     <ClCompile Include="RedBoxErrorInfo.cpp" />
     <ClCompile Include="RedBoxErrorFrameInfo.cpp" />
@@ -635,6 +638,9 @@
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="Utils\ValueUtils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\XamlIslandUtils.h">
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="XamlLoadState.h" />

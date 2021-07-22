@@ -4,6 +4,7 @@
 #include "pch.h"
 
 #include "TextViewManager.h"
+#include "Utils/XamlIslandUtils.h"
 
 #include <Views/RawTextViewManager.h>
 #include <Views/ShadowNodeBase.h>
@@ -211,10 +212,16 @@ bool TextViewManager::UpdateProperty(
       textBlock.ClearValue(xaml::Controls::TextBlock::LineStackingStrategyProperty());
     }
   } else if (propertyName == "selectable") {
-    if (propertyValue.Type() == winrt::Microsoft::ReactNative::JSValueType::Boolean)
-      textBlock.IsTextSelectionEnabled(propertyValue.AsBoolean());
-    else if (propertyValue.IsNull())
+    if (propertyValue.Type() == winrt::Microsoft::ReactNative::JSValueType::Boolean) {
+      const auto selectable = propertyValue.AsBoolean();
+      textBlock.IsTextSelectionEnabled(selectable);
+      if (selectable) {
+        EnsureUniqueTextFlyoutForXamlIsland(textBlock);
+      }
+    } else if (propertyValue.IsNull()) {
       textBlock.ClearValue(xaml::Controls::TextBlock::IsTextSelectionEnabledProperty());
+      ClearUniqueTextFlyoutForXamlIsland(textBlock);
+    }
   } else if (propertyName == "allowFontScaling") {
     if (propertyValue.Type() == winrt::Microsoft::ReactNative::JSValueType::Boolean) {
       textBlock.IsTextScaleFactorEnabled(propertyValue.AsBoolean());
