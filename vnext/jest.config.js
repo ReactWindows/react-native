@@ -1,6 +1,6 @@
 module.exports = {
   verbose: true,
-  resolver: './jest-resolver.js',
+  resolver: '@rnx-kit/jest-resolver',
   snapshotResolver: './jest-snapshot-resolver.js',
   transform: {
     '^.+\\.(bmp|gif|jpg|jpeg|mp4|png|psd|svg|webp)$':

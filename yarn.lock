@@ -1815,6 +1815,14 @@
   resolved "https://registry.yarnpkg.com/@reactions/component/-/component-2.0.2.tgz#40f8c1c2c37baabe57a0c944edb9310dc1ec6642"
   integrity sha1-QPjBwsN7qr5XoMlE7bkxDcHsZkI=
 
+"@rnx-kit/jest-resolver@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@rnx-kit/jest-resolver/-/jest-resolver-0.1.0.tgz#42c318edae890bd507c599687c594a64cd543515"
+  integrity sha512-qjVEQchdUXC7Eh+r94kyM6hdaJFY+kxjoKu4wjcwiTIa/CndOsDHeF+f50wX9HyrweNzBcg+tn5bFKjwLHf7lA==
+  dependencies:
+    pkg-dir "^5.0.0"
+    resolve "^1.20.0"
+
 "@rushstack/node-core-library@3.35.2":
   version "3.35.2"
   resolved "https://registry.yarnpkg.com/@rushstack/node-core-library/-/node-core-library-3.35.2.tgz#21ca879b5051a5ebafa952fafcd648a07a142bcb"
@@ -9846,7 +9854,7 @@ resolve-url@^0.2.1:
   resolved "https://registry.yarnpkg.com/resolve-url/-/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
   integrity sha1-LGN/53yJOv0qZj/iGqkIAGjiBSo=
 
-resolve@^1.1.6, resolve@^1.10.0, resolve@^1.12.0, resolve@^1.14.2, resolve@^1.18.1, resolve@^1.19.0, resolve@^1.8.1:
+resolve@^1.1.6, resolve@^1.10.0, resolve@^1.12.0, resolve@^1.14.2, resolve@^1.18.1, resolve@^1.19.0, resolve@^1.20.0, resolve@^1.8.1:
   version "1.20.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.20.0.tgz#629a013fb3f70755d6f0b7935cc1c2c5378b1975"
   integrity sha512-wENBPt4ySzg4ybFQW2TT1zMQucPK95HSh/nq2CFTZVOGut2+pQvSsgtda4d26YrYcr067wjbmzOG8byDPBX63A==

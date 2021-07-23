@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Replace @rnw-scripts/jest-out-of-tree-resolver with @rnx-kit/jest-resolver",
+  "packageName": "react-native-windows",
+  "email": "4123478+tido64@users.noreply.github.com",
+  "dependentChangeType": "none"
+}

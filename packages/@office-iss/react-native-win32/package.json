@@ -57,8 +57,8 @@
   },
   "devDependencies": {
     "@rnw-scripts/eslint-config": "1.1.7",
-    "@rnw-scripts/jest-out-of-tree-resolver": "^1.0.2",
     "@rnw-scripts/jest-out-of-tree-snapshot-resolver": "^1.0.1",
+    "@rnx-kit/jest-resolver": "^0.1.0",
     "@types/node": "^14.14.22",
     "@types/prop-types": "15.7.1",
     "@types/react": "16.9.11",

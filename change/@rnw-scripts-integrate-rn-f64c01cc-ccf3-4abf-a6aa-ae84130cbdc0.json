@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Yarn sets the executable bit on all scripts when installing on a *nix file system. Checking in these changes as they just tell the OS that they are executable, and one would otherwise have to reset them every time. Note that only the meta data is changed. The content of 'bin.js' is untouched.",
+  "packageName": "@rnw-scripts/integrate-rn",
+  "email": "4123478+tido64@users.noreply.github.com",
+  "dependentChangeType": "none"
+}

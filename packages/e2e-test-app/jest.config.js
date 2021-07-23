@@ -23,7 +23,7 @@ module.exports = {
   testTimeout: 70000,
 
   // This option allows the use of a custom resolver
-  resolver: './jest-resolver.js',
+  resolver: '@rnx-kit/jest-resolver',
 
   // This will be used to configure the behavior of jest-haste-map, Jest's internal file crawler/cache system
   haste: {
