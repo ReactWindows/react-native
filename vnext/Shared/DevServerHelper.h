@@ -5,6 +5,10 @@
 
 #include <cxxreact/JSExecutor.h>
 
+#if defined(ENABLE_HBCBUNDLES) && defined(USE_HERMES)
+#include <hermes/BytecodeVersion.h>
+#endif
+
 namespace facebook {
 namespace react {
 
@@ -33,7 +37,14 @@ class DevServerHelper {
       const std::string &platform,
       bool dev,
       bool hot,
-      bool inlineSourceMap) {
+      bool inlineSourceMap,
+      const uint32_t hermesBytecodeVersion) {
+    std::string hermesBytecodeVersionQuery;
+    if (hermesBytecodeVersion > 0) {
+      static constexpr const char HermesBytecodeVersionQueryFormat[] = "&runtimeBytecodeVersion=%d";
+      hermesBytecodeVersionQuery = string_format(HermesBytecodeVersionQueryFormat, hermesBytecodeVersion);
+    }
+
     return string_format(
         BundleUrlFormat,
         GetDeviceLocalHost(sourceBundleHost, sourceBundlePort).c_str(),
@@ -41,7 +52,8 @@ class DevServerHelper {
         platform.c_str(),
         dev ? "true" : "false",
         hot ? "true" : "false",
-        inlineSourceMap ? "true" : "false");
+        inlineSourceMap ? "true" : "false",
+        hermesBytecodeVersionQuery.c_str());
   }
 
   static std::string get_OnChangeEndpointUrl(const std::string &sourceBundleHost, const uint16_t sourceBundlePort) {
@@ -83,7 +95,7 @@ class DevServerHelper {
   }
 
   static constexpr const char DeviceLocalHostFormat[] = "%s:%d";
-  static constexpr const char BundleUrlFormat[] = "http://%s/%s.bundle?platform=%s&dev=%s&hot=%s&inlineSourceMap=%s";
+  static constexpr const char BundleUrlFormat[] = "http://%s/%s.bundle?platform=%s&dev=%s&hot=%s&inlineSourceMap=%s%s";
   static constexpr const char SourceMapUrlFormat[] = "http://%s/%s.map?platform=%s&dev=%s&hot=%s";
   static constexpr const char LaunchDevToolsCommandUrlFormat[] = "http://%s/launch-js-devtools";
   static constexpr const char OnChangeEndpointUrlFormat[] = "http://%s/onchange";

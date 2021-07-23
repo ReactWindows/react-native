@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include <InspectorProxy.h>
 #include <WinRTWebSocketResource.h>
 #include <jsinspector/InspectorInterfaces.h>
 
@@ -31,6 +32,7 @@ class InspectorPackagerConnection final : public std::enable_shared_from_this<In
 
  private:
   friend class RemoteConnection;
+  friend class RemoteConnection2;
 
   winrt::fire_and_forget sendMessageToPackagerAsync(std::string &&message) const;
   void sendMessageToPackager(std::string &&message) const;
@@ -55,4 +57,16 @@ class RemoteConnection final : public facebook::react::IRemoteConnection {
   int64_t m_pageId;
   const InspectorPackagerConnection &m_packagerConnection;
 };
+
+class RemoteConnection2 final : public facebook::react::IRemoteConnection2 {
+ public:
+  RemoteConnection2(int64_t pageId, const InspectorPackagerConnection &packagerConnection);
+  void onMessage(std::unique_ptr<facebook::react::IHermesString> message) override;
+  void onDisconnect() override;
+
+ private:
+  int64_t m_pageId;
+  const InspectorPackagerConnection &m_packagerConnection;
+};
+
 } // namespace Microsoft::ReactNative

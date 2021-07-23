@@ -1,32 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- TODO: 
-1. Find and replace "RNWTraceLoggingProvider" with the name of your provider.
-2. See TODO below to update GUID for your event provider
--->
 <WindowsPerformanceRecorder Version="1.0" Author="Microsoft Corporation" Copyright="Microsoft Corporation" Company="Microsoft Corporation">
   <Profiles>
     <EventCollector Id="EventCollector_RNWTraceLoggingProvider" Name="RNWTraceLoggingProvider">
       <BufferSize Value="64" />
       <Buffers Value="4" />
     </EventCollector>
-
-    <!-- TODO: 
- 1. Update Name attribute in EventProvider xml element with your provider GUID, eg: Name="3970F9cf-2c0c-4f11-b1cc-e3a1e9958833". Or
-    if you specify an EventSource C# provider or call TraceLoggingRegister(...) without a GUID, use star (*) before your provider
-    name, eg: Name="*MyEventSourceProvider" which will enable your provider appropriately.  
- 2. This sample lists one EventProvider xml element and references it in a Profile with EventProviderId xml element. 
-    For your component wprp, enable the required number of providers and fix the Profile xml element appropriately
--->
     <EventProvider Id="EventProvider_RNWTraceLoggingProvider" Name="910fb9a1-75dd-4cf4-beec-da21341f20c8" />
+    <EventProvider Id="EventProvider_HermesTraceLoggingProvider" Name="5bf36bca-6f36-44a7-836f-4f41ad758632" />
 
     <Profile Id="RNWTraceLoggingProvider.Verbose.File" Name="RNWTraceLoggingProvider" Description="RNWTraceLoggingProvider" LoggingMode="File" DetailLevel="Verbose">
       <Collectors>
         <EventCollectorId Value="EventCollector_RNWTraceLoggingProvider">
           <EventProviders>
-            <!-- TODO:
- 1. Fix your EventProviderId with Value same as the Id attribute on EventProvider xml element above
--->
             <EventProviderId Value="EventProvider_RNWTraceLoggingProvider" />
+            <EventProviderId Value="EventProvider_HermesTraceLoggingProvider" />
           </EventProviders>
         </EventCollectorId>
       </Collectors>

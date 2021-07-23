@@ -227,7 +227,7 @@ export async function copyProjectTemplateAndReplace(
       version: '6.2.9',
     },
     {
-      id: 'ReactNative.Hermes.Windows',
+      id: 'ReactNative.Hermes.Windows1',
       version: hermesVersion,
     },
   ];
@@ -241,7 +241,7 @@ export async function copyProjectTemplateAndReplace(
       hasTargets: true,
     },
     {
-      id: 'ReactNative.Hermes.Windows',
+      id: 'ReactNative.Hermes.Windows1',
       version: hermesVersion,
       hasProps: false,
       hasTargets: true,

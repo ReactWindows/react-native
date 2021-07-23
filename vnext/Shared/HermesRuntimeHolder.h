@@ -7,6 +7,14 @@
 #include <jsi/jsi.h>
 #include <thread>
 
+#ifndef NDEBUG
+namespace facebook {
+namespace hermes {
+class HermesRuntime;
+} // namespace hermes
+} // namespace facebook
+#endif
+
 #include <DevSettings.h>
 
 namespace facebook {
@@ -22,6 +30,9 @@ class HermesRuntimeHolder : public facebook::jsi::RuntimeHolderLazyInit {
 
  private:
   void initRuntime() noexcept;
+#ifndef NDEBUG
+  std::shared_ptr<facebook::hermes::HermesRuntime> m_hermesRuntime;
+#endif
   std::shared_ptr<facebook::jsi::Runtime> m_runtime;
 
   std::once_flag m_once_flag;

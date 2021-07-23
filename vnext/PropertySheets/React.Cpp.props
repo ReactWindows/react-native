@@ -46,6 +46,7 @@
     <ClCompile>
       <PreprocessorDefinitions Condition="'$(UseHermes)'=='true'">USE_HERMES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(IncludeHermes)'=='true'">INCLUDE_HERMES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(EnableHBCBundles)'=='true'">ENABLE_HBCBUNDLES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(UseV8)'=='true'">USE_V8;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(UseFabric)'=='true'">USE_FABRIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>

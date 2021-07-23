@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "Fixing package references",
+  "packageName": "@react-native-windows/cli",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
