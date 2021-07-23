@@ -194,7 +194,7 @@ jobs:
             React.Windows.Desktop\**
             React.Windows.Desktop.DLL\**
             React.Windows.Desktop.Test.DLL\**
-      
+
       - template: templates/component-governance.yml
 
   - job: RnwNativeBuildUniversal
@@ -243,7 +243,7 @@ jobs:
             Microsoft.ReactNative\**
             Microsoft.ReactNative.Managed\**
             Microsoft.ReactNative.Managed.CodeGen\**
-      
+
       - template: templates/component-governance.yml
 
       # Make symbols available through http://symweb.
@@ -290,7 +290,7 @@ jobs:
           artifactName: ReactWindows
           pathToPublish: $(Build.StagingDirectory)
           parallel: true
-      
+
       - template: templates/component-governance.yml
 
       # Make symbols available through http://symweb.
@@ -314,11 +314,6 @@ jobs:
       - checkout: none
 
       - template: templates/apply-published-version-vars.yml
-
-      # The commit tag in the nuspec requires that we use at least nuget 5.8 (because things break with nuget versions before and Vs 16.8 or later)
-      - task: NuGetToolInstaller@0
-        inputs:
-          versionSpec: ">=5.8.0"
 
       - template: templates/prep-and-pack-nuget.yml
         parameters:

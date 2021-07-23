@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
 
-  <!-- 
+  <!--
     Due to the mono-repo setup in this repo, we should ensure that all the projects
     are pointing to the same place for react-native and react-native-windows.
     -->
@@ -12,5 +12,30 @@
     <RootIntDir>$(ReactNativeWindowsDir)\build</RootIntDir>
     <RootOutDir>$(ReactNativeWindowsDir)\target</RootOutDir>
   </PropertyGroup>
+
+  <PropertyGroup Label="NuGet">
+    <MSBuildProjectExtensionsPath>$(RootIntDir)\ProjectExtensions\$(MSBuildProjectName)\</MSBuildProjectExtensionsPath>
+  </PropertyGroup>
+
+  <PropertyGroup Label="NuGet" Condition="'$(MSBuildProjectExtension)' == '.vcxproj'">
+
+    <!-- https://github.com/NuGet/Home/issues/10511#issuecomment-778400668 -->
+    <AssetTargetFallback>$(AssetTargetFallback);native</AssetTargetFallback>
+
+    <!--
+      Avoid Visual Studio error message:
+      "The project '$(MSBuildProjectName)' ran into a problem during the last operation: The value of the
+      'TargetFrameworkMoniker' and 'NuGetTargetMoniker' properties in the '$(Configuration)|$(Platform)' configuration are both
+      empty. This configuration will not contribute to NuGet restore, which may result in restore and build errors. You may
+      need to reload the solution after fixing the problem."
+    -->
+    <TargetFrameworkMoniker>native,Version=v0.0</TargetFrameworkMoniker>
+    <!-- TODO: Keep? -->
+    <!-- <RuntimeIdentifiers Condition="'$(RuntimeIdentifiers)' == ''">win;win-x64;win-x86;win-arm64</RuntimeIdentifiers> -->
+  </PropertyGroup>
+
+  <ItemGroup Label="NuGet" Condition="'$(MSBuildProjectExtension)' == '.vcxproj'">
+    <ProjectCapability Include="PackageReferences" />
+  </ItemGroup>
 
 </Project>

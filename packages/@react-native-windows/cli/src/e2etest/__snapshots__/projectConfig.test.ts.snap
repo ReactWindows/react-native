@@ -139,14 +139,6 @@ Object {
 
 exports[`useWinUI3=true in react-native.config.js, useWinUI3=false in ExperimentalFeatures.props 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
-<packages>
-  <package id=\\"Microsoft.ReactNative.Cxx\\" version=\\"1.0.0\\" targetFramework=\\"native\\"/>
-  <package id=\\"Microsoft.WinUI\\" version=\\"3.0.0-preview4.210210.4\\" targetFramework=\\"native\\"/>
-</packages>"
-`;
-
-exports[`useWinUI3=true in react-native.config.js, useWinUI3=false in ExperimentalFeatures.props 2`] = `
-"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
 <Project xmlns=\\"http://schemas.microsoft.com/developer/msbuild/2003\\">
 
   <PropertyGroup Label=\\"Microsoft.ReactNative Experimental Features\\">

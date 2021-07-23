@@ -20,6 +20,9 @@
     <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
     <AppxGeneratePrisForPortableLibrariesEnabled>false</AppxGeneratePrisForPortableLibrariesEnabled>
   </PropertyGroup>
+  <PropertyGroup Label="NuGet">
+    <AssetTargetFallback>$(AssetTargetFallback);native</AssetTargetFallback>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>$(OutDir)bin\x86\Debug\</OutputPath>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+  <PropertyGroup Label="NuGet" Condition="'$(MSBuildProjectExtension)' == '.vcxproj'">
+    <AssetTargetFallback>$(AssetTargetFallback);native</AssetTargetFallback>
+    <TargetFrameworkMoniker>native,Version=v0.0</TargetFrameworkMoniker>
+  </PropertyGroup>
+
+  <ItemGroup Label="NuGet" Condition="'$(MSBuildProjectExtension)' == '.vcxproj'">
+    <ProjectCapability Include="PackageReferences" />
+  </ItemGroup>
+
+</Project>

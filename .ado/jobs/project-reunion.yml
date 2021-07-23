@@ -63,10 +63,6 @@ jobs:
           pathToPublish: $(Build.StagingDirectory)
           parallel: true
 
-      - task: NuGetToolInstaller@0
-        inputs:
-          versionSpec: ">=5.8.0"
-
       - template: ../templates/prep-and-pack-nuget.yml
         parameters:
           packDesktop: false

@@ -23,6 +23,9 @@
     <EnableTypeInfoReflection>false</EnableTypeInfoReflection>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
+  <PropertyGroup Label="NuGet">
+    <AssetTargetFallback>$(AssetTargetFallback);native</AssetTargetFallback>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>

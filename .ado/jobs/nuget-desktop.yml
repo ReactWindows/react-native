@@ -19,10 +19,6 @@ jobs:
         submodules: false # set to 'true' for a single level of submodules or 'recursive' to get submodules of submodules
         persistCredentials: false # set to 'true' to leave the OAuth token in the Git config after the initial fetch
 
-      - task: NuGetToolInstaller@0
-        inputs:
-          versionSpec: ">=5.8.0"
-
       - template: ../templates/prep-and-pack-nuget.yml
         parameters:
           packDesktop: true

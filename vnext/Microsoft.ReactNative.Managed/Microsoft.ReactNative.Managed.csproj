@@ -25,6 +25,9 @@
     <NoWarn>$(NoWarn);1591</NoWarn>
     <!-- Missing XML comment for publicly visible type or member -->
   </PropertyGroup>
+  <PropertyGroup Label="NuGet">
+    <AssetTargetFallback>$(AssetTargetFallback);native</AssetTargetFallback>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>

@@ -23,18 +23,13 @@ steps:
         Get-ChildItem "${env:ProgramFiles(x86)}\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x86.Microsoft.Net.Native.SharedLibrary" | Select-Object FullName
         Get-ChildItem "${env:ProgramFiles(x86)}\Microsoft SDKs\UWPNuGetPackages\Microsoft.Net.UWPCoreRuntimeSdk" | Select-Object FullName
 
-  # The commit tag in the nuspec requires that we use at least nuget 5.8 (because things break with nuget versions before and Vs 16.8 or later)
-  - task: NuGetToolInstaller@0
-    inputs:
-      versionSpec: ">=5.8.0"
-
   - task: NodeTool@0
     displayName: Installing Node
     inputs:
-      versionSpec: '14.x' 
+      versionSpec: '14.x'
 
   - task: CmdLine@2
-    displayName: Installing Yarm
+    displayName: Installing Yarn
     inputs:
       script: npm install -g yarn
 
