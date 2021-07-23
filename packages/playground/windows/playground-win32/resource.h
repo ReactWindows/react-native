@@ -20,6 +20,9 @@
 #define IDM_NEWWINDOW 105
 #define IDC_DEBUGGERPORT 106
 #define IDC_DEBUGGERPORTLABEL 107
+#define IDC_THEME 109
+#define IDC_THEMELABEL 110
+#define IDC_JSENGINELABEL 111
 #define IDI_ICON1 1008
 
 // Next default values for new objects
